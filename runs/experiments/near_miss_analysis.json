@@ -1,0 +1,179 @@
+{
+  "pooled_pct_near_miss": 39.5,
+  "rows": [
+    {
+      "model": "yolov8n",
+      "total_hardclass_errors": 268,
+      "near_miss": 103,
+      "far_miss": 165,
+      "pct_near_miss": 38.4,
+      "per_class": {
+        "liewenshe": {
+          "total": 88,
+          "near": 19,
+          "pct_near": 21.6
+        },
+        "hongdianshe": {
+          "total": 83,
+          "near": 38,
+          "pct_near": 45.8
+        },
+        "chihenshe": {
+          "total": 74,
+          "near": 24,
+          "pct_near": 32.4
+        },
+        "botaishe": {
+          "total": 23,
+          "near": 22,
+          "pct_near": 95.7
+        }
+      }
+    },
+    {
+      "model": "yolov8m",
+      "total_hardclass_errors": 224,
+      "near_miss": 94,
+      "far_miss": 130,
+      "pct_near_miss": 42.0,
+      "per_class": {
+        "liewenshe": {
+          "total": 56,
+          "near": 15,
+          "pct_near": 26.8
+        },
+        "chihenshe": {
+          "total": 75,
+          "near": 29,
+          "pct_near": 38.7
+        },
+        "hongdianshe": {
+          "total": 70,
+          "near": 28,
+          "pct_near": 40.0
+        },
+        "botaishe": {
+          "total": 23,
+          "near": 22,
+          "pct_near": 95.7
+        }
+      }
+    },
+    {
+      "model": "yolov10n",
+      "total_hardclass_errors": 274,
+      "near_miss": 98,
+      "far_miss": 176,
+      "pct_near_miss": 35.8,
+      "per_class": {
+        "liewenshe": {
+          "total": 99,
+          "near": 22,
+          "pct_near": 22.2
+        },
+        "chihenshe": {
+          "total": 80,
+          "near": 23,
+          "pct_near": 28.8
+        },
+        "hongdianshe": {
+          "total": 71,
+          "near": 30,
+          "pct_near": 42.3
+        },
+        "botaishe": {
+          "total": 24,
+          "near": 23,
+          "pct_near": 95.8
+        }
+      }
+    },
+    {
+      "model": "yolov10m",
+      "total_hardclass_errors": 232,
+      "near_miss": 97,
+      "far_miss": 135,
+      "pct_near_miss": 41.8,
+      "per_class": {
+        "liewenshe": {
+          "total": 76,
+          "near": 21,
+          "pct_near": 27.6
+        },
+        "chihenshe": {
+          "total": 65,
+          "near": 29,
+          "pct_near": 44.6
+        },
+        "hongdianshe": {
+          "total": 66,
+          "near": 23,
+          "pct_near": 34.8
+        },
+        "botaishe": {
+          "total": 25,
+          "near": 24,
+          "pct_near": 96.0
+        }
+      }
+    },
+    {
+      "model": "yolov11n",
+      "total_hardclass_errors": 233,
+      "near_miss": 95,
+      "far_miss": 138,
+      "pct_near_miss": 40.8,
+      "per_class": {
+        "liewenshe": {
+          "total": 62,
+          "near": 13,
+          "pct_near": 21.0
+        },
+        "hongdianshe": {
+          "total": 75,
+          "near": 35,
+          "pct_near": 46.7
+        },
+        "chihenshe": {
+          "total": 73,
+          "near": 26,
+          "pct_near": 35.6
+        },
+        "botaishe": {
+          "total": 23,
+          "near": 21,
+          "pct_near": 91.3
+        }
+      }
+    },
+    {
+      "model": "yolov11m",
+      "total_hardclass_errors": 261,
+      "near_miss": 102,
+      "far_miss": 159,
+      "pct_near_miss": 39.1,
+      "per_class": {
+        "liewenshe": {
+          "total": 82,
+          "near": 18,
+          "pct_near": 22.0
+        },
+        "chihenshe": {
+          "total": 74,
+          "near": 29,
+          "pct_near": 39.2
+        },
+        "hongdianshe": {
+          "total": 78,
+          "near": 30,
+          "pct_near": 38.5
+        },
+        "botaishe": {
+          "total": 27,
+          "near": 25,
+          "pct_near": 92.6
+        }
+      }
+    }
+  ]
+}

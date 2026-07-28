@@ -1,0 +1,413 @@
+{
+  "n_models": 6,
+  "n_pairs": 15,
+  "bonferroni_alpha": 0.003333,
+  "spearman_ccs_vs_f1_0.5": 0.9429,
+  "pairwise": [
+    {
+      "model_A": "yolov8n",
+      "model_B": "yolov8m",
+      "ccs_bootstrap": {
+        "observed_diff": -0.02426159606963718,
+        "ci95_low": -0.0427212160915703,
+        "ci95_high": -0.005734617808498915,
+        "p_value": 0.01,
+        "significant_0.05": true
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 531,
+        "W_statistic": 59560.0,
+        "z": -3.1276,
+        "p_value": 0.001763,
+        "significant_0.05": true
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": -0.023432194621772984,
+        "ci95_low": -0.03962127344369068,
+        "ci95_high": -0.008415231891837942,
+        "p_value": 0.0025,
+        "significant_0.05": true
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": true
+    },
+    {
+      "model_A": "yolov8n",
+      "model_B": "yolov10n",
+      "ccs_bootstrap": {
+        "observed_diff": 0.004150989482163525,
+        "ci95_low": -0.01574534908330496,
+        "ci95_high": 0.022992313939844525,
+        "p_value": 0.689,
+        "significant_0.05": false
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 524,
+        "W_statistic": 67595.0,
+        "z": -0.3403,
+        "p_value": 0.733635,
+        "significant_0.05": false
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": 0.006538888175716795,
+        "ci95_low": -0.00685921386077461,
+        "ci95_high": 0.020284672894881475,
+        "p_value": 0.3925,
+        "significant_0.05": false
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": false
+    },
+    {
+      "model_A": "yolov8n",
+      "model_B": "yolov10m",
+      "ccs_bootstrap": {
+        "observed_diff": -0.0075371840513897,
+        "ci95_low": -0.026719929510832553,
+        "ci95_high": 0.011224293316234165,
+        "p_value": 0.447,
+        "significant_0.05": false
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 529,
+        "W_statistic": 64263.0,
+        "z": -1.6574,
+        "p_value": 0.097442,
+        "significant_0.05": false
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": -0.008071317390689059,
+        "ci95_low": -0.023432706211945292,
+        "ci95_high": 0.00812217095769759,
+        "p_value": 0.2925,
+        "significant_0.05": false
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": false
+    },
+    {
+      "model_A": "yolov8n",
+      "model_B": "yolov11n",
+      "ccs_bootstrap": {
+        "observed_diff": -0.022111146033189755,
+        "ci95_low": -0.039639479241775674,
+        "ci95_high": -0.005478344216314061,
+        "p_value": 0.01,
+        "significant_0.05": true
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 524,
+        "W_statistic": 56764.0,
+        "z": -3.4638,
+        "p_value": 0.000533,
+        "significant_0.05": true
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": -0.0188010422375417,
+        "ci95_low": -0.03226481254660008,
+        "ci95_high": -0.004810726353275224,
+        "p_value": 0.005,
+        "significant_0.05": true
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": false
+    },
+    {
+      "model_A": "yolov8n",
+      "model_B": "yolov11m",
+      "ccs_bootstrap": {
+        "observed_diff": -0.007851526938582931,
+        "ci95_low": -0.02718449476847446,
+        "ci95_high": 0.010073178662441713,
+        "p_value": 0.398,
+        "significant_0.05": false
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 528,
+        "W_statistic": 60334.5,
+        "z": -2.7068,
+        "p_value": 0.006794,
+        "significant_0.05": true
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": -0.018809083055658316,
+        "ci95_low": -0.03467774861294952,
+        "ci95_high": -0.003475903042248942,
+        "p_value": 0.02,
+        "significant_0.05": true
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": false
+    },
+    {
+      "model_A": "yolov8m",
+      "model_B": "yolov10n",
+      "ccs_bootstrap": {
+        "observed_diff": 0.028412585551800706,
+        "ci95_low": 0.007857494382025404,
+        "ci95_high": 0.04859069266989609,
+        "p_value": 0.005,
+        "significant_0.05": true
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 531,
+        "W_statistic": 58170.0,
+        "z": -3.5205,
+        "p_value": 0.000431,
+        "significant_0.05": true
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": 0.02997108279748978,
+        "ci95_low": 0.012733104244196575,
+        "ci95_high": 0.045665826069686465,
+        "p_value": 0.0,
+        "significant_0.05": true
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": true
+    },
+    {
+      "model_A": "yolov8m",
+      "model_B": "yolov10m",
+      "ccs_bootstrap": {
+        "observed_diff": 0.01672441201824748,
+        "ci95_low": -0.0007524365150253396,
+        "ci95_high": 0.03414693974277886,
+        "p_value": 0.056,
+        "significant_0.05": false
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 532,
+        "W_statistic": 66665.0,
+        "z": -1.1908,
+        "p_value": 0.233736,
+        "significant_0.05": false
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": 0.015360877231083925,
+        "ci95_low": 0.0016536386661219582,
+        "ci95_high": 0.03085234654111933,
+        "p_value": 0.0275,
+        "significant_0.05": true
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": false
+    },
+    {
+      "model_A": "yolov8m",
+      "model_B": "yolov11n",
+      "ccs_bootstrap": {
+        "observed_diff": 0.0021504500364474266,
+        "ci95_low": -0.0162694121919986,
+        "ci95_high": 0.020980776573409292,
+        "p_value": 0.802,
+        "significant_0.05": false
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 531,
+        "W_statistic": 70261.0,
+        "z": -0.1023,
+        "p_value": 0.918487,
+        "significant_0.05": false
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": 0.004631152384231285,
+        "ci95_low": -0.010810018877013926,
+        "ci95_high": 0.01948958094300645,
+        "p_value": 0.525,
+        "significant_0.05": false
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": false
+    },
+    {
+      "model_A": "yolov8m",
+      "model_B": "yolov11m",
+      "ccs_bootstrap": {
+        "observed_diff": 0.01641006913105425,
+        "ci95_low": -0.0022563396242683553,
+        "ci95_high": 0.034834630977151684,
+        "p_value": 0.092,
+        "significant_0.05": false
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 534,
+        "W_statistic": 66818.0,
+        "z": -1.2908,
+        "p_value": 0.19678,
+        "significant_0.05": false
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": 0.004623111566114668,
+        "ci95_low": -0.011196647892167167,
+        "ci95_high": 0.019976514526694657,
+        "p_value": 0.535,
+        "significant_0.05": false
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": false
+    },
+    {
+      "model_A": "yolov10n",
+      "model_B": "yolov10m",
+      "ccs_bootstrap": {
+        "observed_diff": -0.011688173533553226,
+        "ci95_low": -0.03031667513889047,
+        "ci95_high": 0.008488954496299455,
+        "p_value": 0.265,
+        "significant_0.05": false
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 527,
+        "W_statistic": 63268.0,
+        "z": -1.8002,
+        "p_value": 0.071828,
+        "significant_0.05": false
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": -0.014610205566405854,
+        "ci95_low": -0.02791783203966175,
+        "ci95_high": -0.0008361946343402055,
+        "p_value": 0.0275,
+        "significant_0.05": true
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": false
+    },
+    {
+      "model_A": "yolov10n",
+      "model_B": "yolov11n",
+      "ccs_bootstrap": {
+        "observed_diff": -0.02626213551535328,
+        "ci95_low": -0.04476309984750475,
+        "ci95_high": -0.008180573718748358,
+        "p_value": 0.006,
+        "significant_0.05": true
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 522,
+        "W_statistic": 61643.0,
+        "z": -1.9167,
+        "p_value": 0.05527,
+        "significant_0.05": false
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": -0.025339930413258493,
+        "ci95_low": -0.03889180801178393,
+        "ci95_high": -0.011334151874954557,
+        "p_value": 0.0,
+        "significant_0.05": true
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": true
+    },
+    {
+      "model_A": "yolov10n",
+      "model_B": "yolov11m",
+      "ccs_bootstrap": {
+        "observed_diff": -0.012002516420746456,
+        "ci95_low": -0.030103153568084767,
+        "ci95_high": 0.006894465253710911,
+        "p_value": 0.238,
+        "significant_0.05": false
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 525,
+        "W_statistic": 62096.0,
+        "z": -1.9961,
+        "p_value": 0.045922,
+        "significant_0.05": true
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": -0.02534797123137511,
+        "ci95_low": -0.0397836146986954,
+        "ci95_high": -0.009871816162628519,
+        "p_value": 0.0025,
+        "significant_0.05": true
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": true
+    },
+    {
+      "model_A": "yolov10m",
+      "model_B": "yolov11n",
+      "ccs_bootstrap": {
+        "observed_diff": -0.014573961981800054,
+        "ci95_low": -0.032188885745638315,
+        "ci95_high": 0.0033789875743581183,
+        "p_value": 0.098,
+        "significant_0.05": false
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 523,
+        "W_statistic": 65446.0,
+        "z": -0.887,
+        "p_value": 0.375072,
+        "significant_0.05": false
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": -0.01072972484685264,
+        "ci95_low": -0.025839136227164612,
+        "ci95_high": 0.004774840361165581,
+        "p_value": 0.1625,
+        "significant_0.05": false
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": false
+    },
+    {
+      "model_A": "yolov10m",
+      "model_B": "yolov11m",
+      "ccs_bootstrap": {
+        "observed_diff": -0.0003143428871932308,
+        "ci95_low": -0.01781934637422851,
+        "ci95_high": 0.016239684103501226,
+        "p_value": 0.937,
+        "significant_0.05": false
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 529,
+        "W_statistic": 69536.0,
+        "z": -0.1582,
+        "p_value": 0.874285,
+        "significant_0.05": false
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": -0.010737765664969257,
+        "ci95_low": -0.024630924803185232,
+        "ci95_high": 0.003197931720603738,
+        "p_value": 0.1275,
+        "significant_0.05": false
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": false
+    },
+    {
+      "model_A": "yolov11n",
+      "model_B": "yolov11m",
+      "ccs_bootstrap": {
+        "observed_diff": 0.014259619094606824,
+        "ci95_low": -0.0032435634077263823,
+        "ci95_high": 0.031132062273947988,
+        "p_value": 0.117,
+        "significant_0.05": false
+      },
+      "ccs_wilcoxon": {
+        "n_effective": 526,
+        "W_statistic": 66819.0,
+        "z": -0.7116,
+        "p_value": 0.476741,
+        "significant_0.05": false
+      },
+      "f1_0.5_bootstrap": {
+        "observed_diff": -8.040818116616943e-06,
+        "ci95_low": -0.01536768409009347,
+        "ci95_high": 0.014650343683029258,
+        "p_value": 0.98,
+        "significant_0.05": false
+      },
+      "significant_ccs_bonferroni": false,
+      "significant_f1_bonferroni": false
+    }
+  ]
+}

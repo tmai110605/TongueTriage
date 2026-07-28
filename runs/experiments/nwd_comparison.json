@@ -1,0 +1,59 @@
+{
+  "nwd_constant_C": 182.5993,
+  "rows": [
+    {
+      "model": "yolov8n",
+      "mean_C_sp": 0.5731,
+      "mean_NWD_continuous": 0.5554,
+      "pearson_r_Csp_vs_NWD": 0.9837,
+      "F1_NWD@0.3": 0.5319,
+      "F1_NWD@0.5": 0.5204,
+      "F1_NWD@0.7": 0.4995
+    },
+    {
+      "model": "yolov8m",
+      "mean_C_sp": 0.594,
+      "mean_NWD_continuous": 0.5782,
+      "pearson_r_Csp_vs_NWD": 0.9809,
+      "F1_NWD@0.3": 0.5711,
+      "F1_NWD@0.5": 0.5602,
+      "F1_NWD@0.7": 0.5286
+    },
+    {
+      "model": "yolov10n",
+      "mean_C_sp": 0.5719,
+      "mean_NWD_continuous": 0.5567,
+      "pearson_r_Csp_vs_NWD": 0.9825,
+      "F1_NWD@0.3": 0.5225,
+      "F1_NWD@0.5": 0.5122,
+      "F1_NWD@0.7": 0.4925
+    },
+    {
+      "model": "yolov10m",
+      "mean_C_sp": 0.5738,
+      "mean_NWD_continuous": 0.5596,
+      "pearson_r_Csp_vs_NWD": 0.9795,
+      "F1_NWD@0.3": 0.541,
+      "F1_NWD@0.5": 0.5277,
+      "F1_NWD@0.7": 0.5096
+    },
+    {
+      "model": "yolov11n",
+      "mean_C_sp": 0.5962,
+      "mean_NWD_continuous": 0.5798,
+      "pearson_r_Csp_vs_NWD": 0.9837,
+      "F1_NWD@0.3": 0.5557,
+      "F1_NWD@0.5": 0.5436,
+      "F1_NWD@0.7": 0.5229
+    },
+    {
+      "model": "yolov11m",
+      "mean_C_sp": 0.58,
+      "mean_NWD_continuous": 0.5654,
+      "pearson_r_Csp_vs_NWD": 0.9863,
+      "F1_NWD@0.3": 0.5616,
+      "F1_NWD@0.5": 0.5479,
+      "F1_NWD@0.7": 0.5274
+    }
+  ]
+}

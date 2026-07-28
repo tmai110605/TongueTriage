@@ -1,0 +1,1154 @@
+[
+  {
+    "model": "yolov8n",
+    "metric": "IOU",
+    "class_id": 0,
+    "ap_50_95": 0.0504,
+    "ap_50": 0.1365,
+    "ap_75": 0.0327
+  },
+  {
+    "model": "yolov8n",
+    "metric": "IOU",
+    "class_id": 1,
+    "ap_50_95": 0.5733,
+    "ap_50": 0.6257,
+    "ap_75": 0.6062
+  },
+  {
+    "model": "yolov8n",
+    "metric": "IOU",
+    "class_id": 2,
+    "ap_50_95": 0.3072,
+    "ap_50": 0.3201,
+    "ap_75": 0.3201
+  },
+  {
+    "model": "yolov8n",
+    "metric": "IOU",
+    "class_id": 3,
+    "ap_50_95": 0.0622,
+    "ap_50": 0.1922,
+    "ap_75": 0.0147
+  },
+  {
+    "model": "yolov8n",
+    "metric": "IOU",
+    "class_id": 4,
+    "ap_50_95": 0.1167,
+    "ap_50": 0.3782,
+    "ap_75": 0.0478
+  },
+  {
+    "model": "yolov8n",
+    "metric": "IOU",
+    "class_id": 5,
+    "ap_50_95": 0.0575,
+    "ap_50": 0.1437,
+    "ap_75": 0.0262
+  },
+  {
+    "model": "yolov8n",
+    "metric": "IOU",
+    "class_id": 6,
+    "ap_50_95": 0.7942,
+    "ap_50": 0.838,
+    "ap_75": 0.8361
+  },
+  {
+    "model": "yolov8n",
+    "metric": "IOU",
+    "class_id": 7,
+    "ap_50_95": 0.5391,
+    "ap_50": 0.5869,
+    "ap_75": 0.5869
+  },
+  {
+    "model": "yolov8n",
+    "metric": "GIOU",
+    "class_id": 0,
+    "ap_50_95": 0.0483,
+    "ap_50": 0.1365,
+    "ap_75": 0.0327
+  },
+  {
+    "model": "yolov8n",
+    "metric": "GIOU",
+    "class_id": 1,
+    "ap_50_95": 0.5733,
+    "ap_50": 0.6257,
+    "ap_75": 0.6062
+  },
+  {
+    "model": "yolov8n",
+    "metric": "GIOU",
+    "class_id": 2,
+    "ap_50_95": 0.3072,
+    "ap_50": 0.3201,
+    "ap_75": 0.3201
+  },
+  {
+    "model": "yolov8n",
+    "metric": "GIOU",
+    "class_id": 3,
+    "ap_50_95": 0.0577,
+    "ap_50": 0.1869,
+    "ap_75": 0.0127
+  },
+  {
+    "model": "yolov8n",
+    "metric": "GIOU",
+    "class_id": 4,
+    "ap_50_95": 0.1031,
+    "ap_50": 0.3358,
+    "ap_75": 0.0449
+  },
+  {
+    "model": "yolov8n",
+    "metric": "GIOU",
+    "class_id": 5,
+    "ap_50_95": 0.0548,
+    "ap_50": 0.1428,
+    "ap_75": 0.0254
+  },
+  {
+    "model": "yolov8n",
+    "metric": "GIOU",
+    "class_id": 6,
+    "ap_50_95": 0.7942,
+    "ap_50": 0.838,
+    "ap_75": 0.8361
+  },
+  {
+    "model": "yolov8n",
+    "metric": "GIOU",
+    "class_id": 7,
+    "ap_50_95": 0.5391,
+    "ap_50": 0.5869,
+    "ap_75": 0.5869
+  },
+  {
+    "model": "yolov8n",
+    "metric": "DIOU",
+    "class_id": 0,
+    "ap_50_95": 0.0498,
+    "ap_50": 0.1359,
+    "ap_75": 0.0327
+  },
+  {
+    "model": "yolov8n",
+    "metric": "DIOU",
+    "class_id": 1,
+    "ap_50_95": 0.5733,
+    "ap_50": 0.6257,
+    "ap_75": 0.6062
+  },
+  {
+    "model": "yolov8n",
+    "metric": "DIOU",
+    "class_id": 2,
+    "ap_50_95": 0.3072,
+    "ap_50": 0.3201,
+    "ap_75": 0.3201
+  },
+  {
+    "model": "yolov8n",
+    "metric": "DIOU",
+    "class_id": 3,
+    "ap_50_95": 0.0587,
+    "ap_50": 0.1882,
+    "ap_75": 0.0133
+  },
+  {
+    "model": "yolov8n",
+    "metric": "DIOU",
+    "class_id": 4,
+    "ap_50_95": 0.1104,
+    "ap_50": 0.3689,
+    "ap_75": 0.0478
+  },
+  {
+    "model": "yolov8n",
+    "metric": "DIOU",
+    "class_id": 5,
+    "ap_50_95": 0.0551,
+    "ap_50": 0.137,
+    "ap_75": 0.0244
+  },
+  {
+    "model": "yolov8n",
+    "metric": "DIOU",
+    "class_id": 6,
+    "ap_50_95": 0.7942,
+    "ap_50": 0.838,
+    "ap_75": 0.8361
+  },
+  {
+    "model": "yolov8n",
+    "metric": "DIOU",
+    "class_id": 7,
+    "ap_50_95": 0.5391,
+    "ap_50": 0.5869,
+    "ap_75": 0.5869
+  },
+  {
+    "model": "yolov8m",
+    "metric": "IOU",
+    "class_id": 0,
+    "ap_50_95": 0.0748,
+    "ap_50": 0.1619,
+    "ap_75": 0.0717
+  },
+  {
+    "model": "yolov8m",
+    "metric": "IOU",
+    "class_id": 1,
+    "ap_50_95": 0.5459,
+    "ap_50": 0.5754,
+    "ap_75": 0.5699
+  },
+  {
+    "model": "yolov8m",
+    "metric": "IOU",
+    "class_id": 2,
+    "ap_50_95": 0.301,
+    "ap_50": 0.3159,
+    "ap_75": 0.3159
+  },
+  {
+    "model": "yolov8m",
+    "metric": "IOU",
+    "class_id": 3,
+    "ap_50_95": 0.0896,
+    "ap_50": 0.2522,
+    "ap_75": 0.0263
+  },
+  {
+    "model": "yolov8m",
+    "metric": "IOU",
+    "class_id": 4,
+    "ap_50_95": 0.1261,
+    "ap_50": 0.3945,
+    "ap_75": 0.0602
+  },
+  {
+    "model": "yolov8m",
+    "metric": "IOU",
+    "class_id": 5,
+    "ap_50_95": 0.058,
+    "ap_50": 0.1247,
+    "ap_75": 0.0419
+  },
+  {
+    "model": "yolov8m",
+    "metric": "IOU",
+    "class_id": 6,
+    "ap_50_95": 0.7862,
+    "ap_50": 0.8301,
+    "ap_75": 0.8214
+  },
+  {
+    "model": "yolov8m",
+    "metric": "IOU",
+    "class_id": 7,
+    "ap_50_95": 0.5822,
+    "ap_50": 0.6264,
+    "ap_75": 0.6264
+  },
+  {
+    "model": "yolov8m",
+    "metric": "GIOU",
+    "class_id": 0,
+    "ap_50_95": 0.0731,
+    "ap_50": 0.1601,
+    "ap_75": 0.0676
+  },
+  {
+    "model": "yolov8m",
+    "metric": "GIOU",
+    "class_id": 1,
+    "ap_50_95": 0.5459,
+    "ap_50": 0.5754,
+    "ap_75": 0.5699
+  },
+  {
+    "model": "yolov8m",
+    "metric": "GIOU",
+    "class_id": 2,
+    "ap_50_95": 0.301,
+    "ap_50": 0.3159,
+    "ap_75": 0.3159
+  },
+  {
+    "model": "yolov8m",
+    "metric": "GIOU",
+    "class_id": 3,
+    "ap_50_95": 0.084,
+    "ap_50": 0.2412,
+    "ap_75": 0.0246
+  },
+  {
+    "model": "yolov8m",
+    "metric": "GIOU",
+    "class_id": 4,
+    "ap_50_95": 0.1122,
+    "ap_50": 0.3402,
+    "ap_75": 0.0602
+  },
+  {
+    "model": "yolov8m",
+    "metric": "GIOU",
+    "class_id": 5,
+    "ap_50_95": 0.0562,
+    "ap_50": 0.1199,
+    "ap_75": 0.0415
+  },
+  {
+    "model": "yolov8m",
+    "metric": "GIOU",
+    "class_id": 6,
+    "ap_50_95": 0.7862,
+    "ap_50": 0.8301,
+    "ap_75": 0.8214
+  },
+  {
+    "model": "yolov8m",
+    "metric": "GIOU",
+    "class_id": 7,
+    "ap_50_95": 0.5822,
+    "ap_50": 0.6264,
+    "ap_75": 0.6264
+  },
+  {
+    "model": "yolov8m",
+    "metric": "DIOU",
+    "class_id": 0,
+    "ap_50_95": 0.0739,
+    "ap_50": 0.1619,
+    "ap_75": 0.0676
+  },
+  {
+    "model": "yolov8m",
+    "metric": "DIOU",
+    "class_id": 1,
+    "ap_50_95": 0.5459,
+    "ap_50": 0.5754,
+    "ap_75": 0.5699
+  },
+  {
+    "model": "yolov8m",
+    "metric": "DIOU",
+    "class_id": 2,
+    "ap_50_95": 0.301,
+    "ap_50": 0.3159,
+    "ap_75": 0.3159
+  },
+  {
+    "model": "yolov8m",
+    "metric": "DIOU",
+    "class_id": 3,
+    "ap_50_95": 0.0854,
+    "ap_50": 0.2427,
+    "ap_75": 0.0251
+  },
+  {
+    "model": "yolov8m",
+    "metric": "DIOU",
+    "class_id": 4,
+    "ap_50_95": 0.1195,
+    "ap_50": 0.3883,
+    "ap_75": 0.0602
+  },
+  {
+    "model": "yolov8m",
+    "metric": "DIOU",
+    "class_id": 5,
+    "ap_50_95": 0.0566,
+    "ap_50": 0.1211,
+    "ap_75": 0.0409
+  },
+  {
+    "model": "yolov8m",
+    "metric": "DIOU",
+    "class_id": 6,
+    "ap_50_95": 0.7862,
+    "ap_50": 0.8301,
+    "ap_75": 0.8214
+  },
+  {
+    "model": "yolov8m",
+    "metric": "DIOU",
+    "class_id": 7,
+    "ap_50_95": 0.5822,
+    "ap_50": 0.6264,
+    "ap_75": 0.6264
+  },
+  {
+    "model": "yolov10n",
+    "metric": "IOU",
+    "class_id": 0,
+    "ap_50_95": 0.075,
+    "ap_50": 0.1465,
+    "ap_75": 0.0723
+  },
+  {
+    "model": "yolov10n",
+    "metric": "IOU",
+    "class_id": 1,
+    "ap_50_95": 0.5967,
+    "ap_50": 0.6269,
+    "ap_75": 0.6269
+  },
+  {
+    "model": "yolov10n",
+    "metric": "IOU",
+    "class_id": 2,
+    "ap_50_95": 0.2811,
+    "ap_50": 0.2938,
+    "ap_75": 0.2938
+  },
+  {
+    "model": "yolov10n",
+    "metric": "IOU",
+    "class_id": 3,
+    "ap_50_95": 0.067,
+    "ap_50": 0.1967,
+    "ap_75": 0.0288
+  },
+  {
+    "model": "yolov10n",
+    "metric": "IOU",
+    "class_id": 4,
+    "ap_50_95": 0.126,
+    "ap_50": 0.319,
+    "ap_75": 0.0852
+  },
+  {
+    "model": "yolov10n",
+    "metric": "IOU",
+    "class_id": 5,
+    "ap_50_95": 0.0506,
+    "ap_50": 0.1078,
+    "ap_75": 0.0406
+  },
+  {
+    "model": "yolov10n",
+    "metric": "IOU",
+    "class_id": 6,
+    "ap_50_95": 0.8271,
+    "ap_50": 0.8745,
+    "ap_75": 0.8632
+  },
+  {
+    "model": "yolov10n",
+    "metric": "IOU",
+    "class_id": 7,
+    "ap_50_95": 0.7268,
+    "ap_50": 0.7752,
+    "ap_75": 0.7752
+  },
+  {
+    "model": "yolov10n",
+    "metric": "GIOU",
+    "class_id": 0,
+    "ap_50_95": 0.0745,
+    "ap_50": 0.1451,
+    "ap_75": 0.0722
+  },
+  {
+    "model": "yolov10n",
+    "metric": "GIOU",
+    "class_id": 1,
+    "ap_50_95": 0.5967,
+    "ap_50": 0.6269,
+    "ap_75": 0.6269
+  },
+  {
+    "model": "yolov10n",
+    "metric": "GIOU",
+    "class_id": 2,
+    "ap_50_95": 0.2811,
+    "ap_50": 0.2938,
+    "ap_75": 0.2938
+  },
+  {
+    "model": "yolov10n",
+    "metric": "GIOU",
+    "class_id": 3,
+    "ap_50_95": 0.0615,
+    "ap_50": 0.1835,
+    "ap_75": 0.0232
+  },
+  {
+    "model": "yolov10n",
+    "metric": "GIOU",
+    "class_id": 4,
+    "ap_50_95": 0.117,
+    "ap_50": 0.2832,
+    "ap_75": 0.0847
+  },
+  {
+    "model": "yolov10n",
+    "metric": "GIOU",
+    "class_id": 5,
+    "ap_50_95": 0.0483,
+    "ap_50": 0.1064,
+    "ap_75": 0.0399
+  },
+  {
+    "model": "yolov10n",
+    "metric": "GIOU",
+    "class_id": 6,
+    "ap_50_95": 0.8267,
+    "ap_50": 0.8745,
+    "ap_75": 0.8632
+  },
+  {
+    "model": "yolov10n",
+    "metric": "GIOU",
+    "class_id": 7,
+    "ap_50_95": 0.7268,
+    "ap_50": 0.7752,
+    "ap_75": 0.7752
+  },
+  {
+    "model": "yolov10n",
+    "metric": "DIOU",
+    "class_id": 0,
+    "ap_50_95": 0.0743,
+    "ap_50": 0.1451,
+    "ap_75": 0.0722
+  },
+  {
+    "model": "yolov10n",
+    "metric": "DIOU",
+    "class_id": 1,
+    "ap_50_95": 0.5962,
+    "ap_50": 0.6269,
+    "ap_75": 0.6269
+  },
+  {
+    "model": "yolov10n",
+    "metric": "DIOU",
+    "class_id": 2,
+    "ap_50_95": 0.2811,
+    "ap_50": 0.2938,
+    "ap_75": 0.2938
+  },
+  {
+    "model": "yolov10n",
+    "metric": "DIOU",
+    "class_id": 3,
+    "ap_50_95": 0.0634,
+    "ap_50": 0.1879,
+    "ap_75": 0.0254
+  },
+  {
+    "model": "yolov10n",
+    "metric": "DIOU",
+    "class_id": 4,
+    "ap_50_95": 0.1205,
+    "ap_50": 0.2987,
+    "ap_75": 0.0852
+  },
+  {
+    "model": "yolov10n",
+    "metric": "DIOU",
+    "class_id": 5,
+    "ap_50_95": 0.0497,
+    "ap_50": 0.1058,
+    "ap_75": 0.0391
+  },
+  {
+    "model": "yolov10n",
+    "metric": "DIOU",
+    "class_id": 6,
+    "ap_50_95": 0.8267,
+    "ap_50": 0.8745,
+    "ap_75": 0.8632
+  },
+  {
+    "model": "yolov10n",
+    "metric": "DIOU",
+    "class_id": 7,
+    "ap_50_95": 0.7268,
+    "ap_50": 0.7752,
+    "ap_75": 0.7752
+  },
+  {
+    "model": "yolov10m",
+    "metric": "IOU",
+    "class_id": 0,
+    "ap_50_95": 0.0815,
+    "ap_50": 0.1948,
+    "ap_75": 0.0598
+  },
+  {
+    "model": "yolov10m",
+    "metric": "IOU",
+    "class_id": 1,
+    "ap_50_95": 0.589,
+    "ap_50": 0.6246,
+    "ap_75": 0.6186
+  },
+  {
+    "model": "yolov10m",
+    "metric": "IOU",
+    "class_id": 2,
+    "ap_50_95": 0.2343,
+    "ap_50": 0.2504,
+    "ap_75": 0.2504
+  },
+  {
+    "model": "yolov10m",
+    "metric": "IOU",
+    "class_id": 3,
+    "ap_50_95": 0.0857,
+    "ap_50": 0.2398,
+    "ap_75": 0.0279
+  },
+  {
+    "model": "yolov10m",
+    "metric": "IOU",
+    "class_id": 4,
+    "ap_50_95": 0.1217,
+    "ap_50": 0.3531,
+    "ap_75": 0.0582
+  },
+  {
+    "model": "yolov10m",
+    "metric": "IOU",
+    "class_id": 5,
+    "ap_50_95": 0.0758,
+    "ap_50": 0.1625,
+    "ap_75": 0.0672
+  },
+  {
+    "model": "yolov10m",
+    "metric": "IOU",
+    "class_id": 6,
+    "ap_50_95": 0.8151,
+    "ap_50": 0.8584,
+    "ap_75": 0.8501
+  },
+  {
+    "model": "yolov10m",
+    "metric": "IOU",
+    "class_id": 7,
+    "ap_50_95": 0.718,
+    "ap_50": 0.7702,
+    "ap_75": 0.7702
+  },
+  {
+    "model": "yolov10m",
+    "metric": "GIOU",
+    "class_id": 0,
+    "ap_50_95": 0.0796,
+    "ap_50": 0.1944,
+    "ap_75": 0.0529
+  },
+  {
+    "model": "yolov10m",
+    "metric": "GIOU",
+    "class_id": 1,
+    "ap_50_95": 0.5887,
+    "ap_50": 0.6246,
+    "ap_75": 0.6186
+  },
+  {
+    "model": "yolov10m",
+    "metric": "GIOU",
+    "class_id": 2,
+    "ap_50_95": 0.234,
+    "ap_50": 0.2504,
+    "ap_75": 0.2504
+  },
+  {
+    "model": "yolov10m",
+    "metric": "GIOU",
+    "class_id": 3,
+    "ap_50_95": 0.081,
+    "ap_50": 0.2308,
+    "ap_75": 0.027
+  },
+  {
+    "model": "yolov10m",
+    "metric": "GIOU",
+    "class_id": 4,
+    "ap_50_95": 0.1137,
+    "ap_50": 0.3353,
+    "ap_75": 0.054
+  },
+  {
+    "model": "yolov10m",
+    "metric": "GIOU",
+    "class_id": 5,
+    "ap_50_95": 0.074,
+    "ap_50": 0.1556,
+    "ap_75": 0.0649
+  },
+  {
+    "model": "yolov10m",
+    "metric": "GIOU",
+    "class_id": 6,
+    "ap_50_95": 0.8145,
+    "ap_50": 0.8584,
+    "ap_75": 0.8501
+  },
+  {
+    "model": "yolov10m",
+    "metric": "GIOU",
+    "class_id": 7,
+    "ap_50_95": 0.717,
+    "ap_50": 0.7702,
+    "ap_75": 0.7702
+  },
+  {
+    "model": "yolov10m",
+    "metric": "DIOU",
+    "class_id": 0,
+    "ap_50_95": 0.0793,
+    "ap_50": 0.1915,
+    "ap_75": 0.0529
+  },
+  {
+    "model": "yolov10m",
+    "metric": "DIOU",
+    "class_id": 1,
+    "ap_50_95": 0.5877,
+    "ap_50": 0.6246,
+    "ap_75": 0.6186
+  },
+  {
+    "model": "yolov10m",
+    "metric": "DIOU",
+    "class_id": 2,
+    "ap_50_95": 0.2343,
+    "ap_50": 0.2504,
+    "ap_75": 0.2504
+  },
+  {
+    "model": "yolov10m",
+    "metric": "DIOU",
+    "class_id": 3,
+    "ap_50_95": 0.0825,
+    "ap_50": 0.2349,
+    "ap_75": 0.0269
+  },
+  {
+    "model": "yolov10m",
+    "metric": "DIOU",
+    "class_id": 4,
+    "ap_50_95": 0.1184,
+    "ap_50": 0.3483,
+    "ap_75": 0.0543
+  },
+  {
+    "model": "yolov10m",
+    "metric": "DIOU",
+    "class_id": 5,
+    "ap_50_95": 0.0751,
+    "ap_50": 0.1613,
+    "ap_75": 0.0654
+  },
+  {
+    "model": "yolov10m",
+    "metric": "DIOU",
+    "class_id": 6,
+    "ap_50_95": 0.8143,
+    "ap_50": 0.8584,
+    "ap_75": 0.8501
+  },
+  {
+    "model": "yolov10m",
+    "metric": "DIOU",
+    "class_id": 7,
+    "ap_50_95": 0.7179,
+    "ap_50": 0.7702,
+    "ap_75": 0.7702
+  },
+  {
+    "model": "yolov11n",
+    "metric": "IOU",
+    "class_id": 0,
+    "ap_50_95": 0.0888,
+    "ap_50": 0.1891,
+    "ap_75": 0.0562
+  },
+  {
+    "model": "yolov11n",
+    "metric": "IOU",
+    "class_id": 1,
+    "ap_50_95": 0.5592,
+    "ap_50": 0.5979,
+    "ap_75": 0.5909
+  },
+  {
+    "model": "yolov11n",
+    "metric": "IOU",
+    "class_id": 2,
+    "ap_50_95": 0.3068,
+    "ap_50": 0.3314,
+    "ap_75": 0.3314
+  },
+  {
+    "model": "yolov11n",
+    "metric": "IOU",
+    "class_id": 3,
+    "ap_50_95": 0.0817,
+    "ap_50": 0.2406,
+    "ap_75": 0.0256
+  },
+  {
+    "model": "yolov11n",
+    "metric": "IOU",
+    "class_id": 4,
+    "ap_50_95": 0.1483,
+    "ap_50": 0.4287,
+    "ap_75": 0.0891
+  },
+  {
+    "model": "yolov11n",
+    "metric": "IOU",
+    "class_id": 5,
+    "ap_50_95": 0.064,
+    "ap_50": 0.143,
+    "ap_75": 0.0455
+  },
+  {
+    "model": "yolov11n",
+    "metric": "IOU",
+    "class_id": 6,
+    "ap_50_95": 0.7879,
+    "ap_50": 0.8382,
+    "ap_75": 0.821
+  },
+  {
+    "model": "yolov11n",
+    "metric": "IOU",
+    "class_id": 7,
+    "ap_50_95": 0.5849,
+    "ap_50": 0.6339,
+    "ap_75": 0.6245
+  },
+  {
+    "model": "yolov11n",
+    "metric": "GIOU",
+    "class_id": 0,
+    "ap_50_95": 0.0865,
+    "ap_50": 0.1821,
+    "ap_75": 0.056
+  },
+  {
+    "model": "yolov11n",
+    "metric": "GIOU",
+    "class_id": 1,
+    "ap_50_95": 0.5564,
+    "ap_50": 0.5979,
+    "ap_75": 0.5909
+  },
+  {
+    "model": "yolov11n",
+    "metric": "GIOU",
+    "class_id": 2,
+    "ap_50_95": 0.3068,
+    "ap_50": 0.3314,
+    "ap_75": 0.3314
+  },
+  {
+    "model": "yolov11n",
+    "metric": "GIOU",
+    "class_id": 3,
+    "ap_50_95": 0.0766,
+    "ap_50": 0.2304,
+    "ap_75": 0.0211
+  },
+  {
+    "model": "yolov11n",
+    "metric": "GIOU",
+    "class_id": 4,
+    "ap_50_95": 0.1344,
+    "ap_50": 0.3737,
+    "ap_75": 0.0778
+  },
+  {
+    "model": "yolov11n",
+    "metric": "GIOU",
+    "class_id": 5,
+    "ap_50_95": 0.0617,
+    "ap_50": 0.1399,
+    "ap_75": 0.0442
+  },
+  {
+    "model": "yolov11n",
+    "metric": "GIOU",
+    "class_id": 6,
+    "ap_50_95": 0.7874,
+    "ap_50": 0.8382,
+    "ap_75": 0.821
+  },
+  {
+    "model": "yolov11n",
+    "metric": "GIOU",
+    "class_id": 7,
+    "ap_50_95": 0.5849,
+    "ap_50": 0.6339,
+    "ap_75": 0.6245
+  },
+  {
+    "model": "yolov11n",
+    "metric": "DIOU",
+    "class_id": 0,
+    "ap_50_95": 0.0864,
+    "ap_50": 0.1834,
+    "ap_75": 0.056
+  },
+  {
+    "model": "yolov11n",
+    "metric": "DIOU",
+    "class_id": 1,
+    "ap_50_95": 0.5582,
+    "ap_50": 0.5979,
+    "ap_75": 0.5909
+  },
+  {
+    "model": "yolov11n",
+    "metric": "DIOU",
+    "class_id": 2,
+    "ap_50_95": 0.3068,
+    "ap_50": 0.3314,
+    "ap_75": 0.3314
+  },
+  {
+    "model": "yolov11n",
+    "metric": "DIOU",
+    "class_id": 3,
+    "ap_50_95": 0.0786,
+    "ap_50": 0.2326,
+    "ap_75": 0.0221
+  },
+  {
+    "model": "yolov11n",
+    "metric": "DIOU",
+    "class_id": 4,
+    "ap_50_95": 0.1433,
+    "ap_50": 0.417,
+    "ap_75": 0.0786
+  },
+  {
+    "model": "yolov11n",
+    "metric": "DIOU",
+    "class_id": 5,
+    "ap_50_95": 0.0623,
+    "ap_50": 0.1395,
+    "ap_75": 0.0454
+  },
+  {
+    "model": "yolov11n",
+    "metric": "DIOU",
+    "class_id": 6,
+    "ap_50_95": 0.7869,
+    "ap_50": 0.8335,
+    "ap_75": 0.821
+  },
+  {
+    "model": "yolov11n",
+    "metric": "DIOU",
+    "class_id": 7,
+    "ap_50_95": 0.584,
+    "ap_50": 0.6339,
+    "ap_75": 0.6245
+  },
+  {
+    "model": "yolov11m",
+    "metric": "IOU",
+    "class_id": 0,
+    "ap_50_95": 0.0893,
+    "ap_50": 0.2015,
+    "ap_75": 0.0719
+  },
+  {
+    "model": "yolov11m",
+    "metric": "IOU",
+    "class_id": 1,
+    "ap_50_95": 0.5629,
+    "ap_50": 0.5974,
+    "ap_75": 0.5896
+  },
+  {
+    "model": "yolov11m",
+    "metric": "IOU",
+    "class_id": 2,
+    "ap_50_95": 0.2108,
+    "ap_50": 0.2259,
+    "ap_75": 0.2259
+  },
+  {
+    "model": "yolov11m",
+    "metric": "IOU",
+    "class_id": 3,
+    "ap_50_95": 0.0809,
+    "ap_50": 0.2427,
+    "ap_75": 0.0227
+  },
+  {
+    "model": "yolov11m",
+    "metric": "IOU",
+    "class_id": 4,
+    "ap_50_95": 0.1354,
+    "ap_50": 0.3788,
+    "ap_75": 0.0799
+  },
+  {
+    "model": "yolov11m",
+    "metric": "IOU",
+    "class_id": 5,
+    "ap_50_95": 0.0607,
+    "ap_50": 0.1498,
+    "ap_75": 0.0413
+  },
+  {
+    "model": "yolov11m",
+    "metric": "IOU",
+    "class_id": 6,
+    "ap_50_95": 0.8022,
+    "ap_50": 0.8534,
+    "ap_75": 0.8398
+  },
+  {
+    "model": "yolov11m",
+    "metric": "IOU",
+    "class_id": 7,
+    "ap_50_95": 0.625,
+    "ap_50": 0.6684,
+    "ap_75": 0.6684
+  },
+  {
+    "model": "yolov11m",
+    "metric": "GIOU",
+    "class_id": 0,
+    "ap_50_95": 0.0865,
+    "ap_50": 0.1939,
+    "ap_75": 0.0719
+  },
+  {
+    "model": "yolov11m",
+    "metric": "GIOU",
+    "class_id": 1,
+    "ap_50_95": 0.5624,
+    "ap_50": 0.5974,
+    "ap_75": 0.5896
+  },
+  {
+    "model": "yolov11m",
+    "metric": "GIOU",
+    "class_id": 2,
+    "ap_50_95": 0.2108,
+    "ap_50": 0.2259,
+    "ap_75": 0.2259
+  },
+  {
+    "model": "yolov11m",
+    "metric": "GIOU",
+    "class_id": 3,
+    "ap_50_95": 0.0756,
+    "ap_50": 0.2265,
+    "ap_75": 0.0203
+  },
+  {
+    "model": "yolov11m",
+    "metric": "GIOU",
+    "class_id": 4,
+    "ap_50_95": 0.1244,
+    "ap_50": 0.358,
+    "ap_75": 0.071
+  },
+  {
+    "model": "yolov11m",
+    "metric": "GIOU",
+    "class_id": 5,
+    "ap_50_95": 0.0572,
+    "ap_50": 0.1471,
+    "ap_75": 0.0396
+  },
+  {
+    "model": "yolov11m",
+    "metric": "GIOU",
+    "class_id": 6,
+    "ap_50_95": 0.8008,
+    "ap_50": 0.8534,
+    "ap_75": 0.8398
+  },
+  {
+    "model": "yolov11m",
+    "metric": "GIOU",
+    "class_id": 7,
+    "ap_50_95": 0.625,
+    "ap_50": 0.6684,
+    "ap_75": 0.6684
+  },
+  {
+    "model": "yolov11m",
+    "metric": "DIOU",
+    "class_id": 0,
+    "ap_50_95": 0.0874,
+    "ap_50": 0.1967,
+    "ap_75": 0.0719
+  },
+  {
+    "model": "yolov11m",
+    "metric": "DIOU",
+    "class_id": 1,
+    "ap_50_95": 0.5624,
+    "ap_50": 0.5974,
+    "ap_75": 0.5896
+  },
+  {
+    "model": "yolov11m",
+    "metric": "DIOU",
+    "class_id": 2,
+    "ap_50_95": 0.2108,
+    "ap_50": 0.2259,
+    "ap_75": 0.2259
+  },
+  {
+    "model": "yolov11m",
+    "metric": "DIOU",
+    "class_id": 3,
+    "ap_50_95": 0.0768,
+    "ap_50": 0.2323,
+    "ap_75": 0.0212
+  },
+  {
+    "model": "yolov11m",
+    "metric": "DIOU",
+    "class_id": 4,
+    "ap_50_95": 0.1279,
+    "ap_50": 0.3594,
+    "ap_75": 0.0673
+  },
+  {
+    "model": "yolov11m",
+    "metric": "DIOU",
+    "class_id": 5,
+    "ap_50_95": 0.0577,
+    "ap_50": 0.1432,
+    "ap_75": 0.0385
+  },
+  {
+    "model": "yolov11m",
+    "metric": "DIOU",
+    "class_id": 6,
+    "ap_50_95": 0.8009,
+    "ap_50": 0.8534,
+    "ap_75": 0.8398
+  },
+  {
+    "model": "yolov11m",
+    "metric": "DIOU",
+    "class_id": 7,
+    "ap_50_95": 0.625,
+    "ap_50": 0.6684,
+    "ap_75": 0.6684
+  }
+]

@@ -1,0 +1,294 @@
+[
+  {
+    "model_A": "yolov8n",
+    "model_B": "yolov10n",
+    "ccs_A": 0.6232,
+    "ccs_B": 0.6191,
+    "ccs_winner": "A",
+    "f1_details": {
+      "IOU@0.3": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.0142
+      },
+      "GIOU@0.3": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.0121
+      },
+      "DIOU@0.3": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.0136
+      },
+      "IOU@0.5": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.0065
+      },
+      "GIOU@0.5": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.0066
+      },
+      "DIOU@0.5": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.0058
+      },
+      "IOU@0.7": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0052
+      },
+      "GIOU@0.7": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0038
+      },
+      "DIOU@0.7": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0045
+      }
+    },
+    "disagreements": [
+      "IOU@0.7",
+      "GIOU@0.7",
+      "DIOU@0.7"
+    ]
+  },
+  {
+    "model_A": "yolov8m",
+    "model_B": "yolov11n",
+    "ccs_A": 0.6475,
+    "ccs_B": 0.6453,
+    "ccs_winner": "A",
+    "f1_details": {
+      "IOU@0.3": {
+        "winner_f1": "A",
+        "winner_mf1": "B",
+        "delta_f1": 0.0028
+      },
+      "GIOU@0.3": {
+        "winner_f1": "A",
+        "winner_mf1": "B",
+        "delta_f1": 0.0008
+      },
+      "DIOU@0.3": {
+        "winner_f1": "A",
+        "winner_mf1": "B",
+        "delta_f1": 0.0024
+      },
+      "IOU@0.5": {
+        "winner_f1": "A",
+        "winner_mf1": "B",
+        "delta_f1": 0.0046
+      },
+      "GIOU@0.5": {
+        "winner_f1": "A",
+        "winner_mf1": "B",
+        "delta_f1": 0.0028
+      },
+      "DIOU@0.5": {
+        "winner_f1": "A",
+        "winner_mf1": "B",
+        "delta_f1": 0.0033
+      },
+      "IOU@0.7": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.0005
+      },
+      "GIOU@0.7": {
+        "winner_f1": "B",
+        "winner_mf1": "A",
+        "delta_f1": -0.0001
+      },
+      "DIOU@0.7": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.0005
+      }
+    },
+    "disagreements": [
+      "GIOU@0.7"
+    ]
+  },
+  {
+    "model_A": "yolov10n",
+    "model_B": "yolov10m",
+    "ccs_A": 0.6191,
+    "ccs_B": 0.6308,
+    "ccs_winner": "B",
+    "f1_details": {
+      "IOU@0.3": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0193
+      },
+      "GIOU@0.3": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0194
+      },
+      "DIOU@0.3": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0167
+      },
+      "IOU@0.5": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0146
+      },
+      "GIOU@0.5": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0148
+      },
+      "DIOU@0.5": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0161
+      },
+      "IOU@0.7": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.0041
+      },
+      "GIOU@0.7": {
+        "winner_f1": "A",
+        "winner_mf1": "B",
+        "delta_f1": 0.0027
+      },
+      "DIOU@0.7": {
+        "winner_f1": "A",
+        "winner_mf1": "B",
+        "delta_f1": 0.0027
+      }
+    },
+    "disagreements": [
+      "IOU@0.7",
+      "GIOU@0.7",
+      "DIOU@0.7"
+    ]
+  },
+  {
+    "model_A": "yolov10n",
+    "model_B": "yolov11m",
+    "ccs_A": 0.6191,
+    "ccs_B": 0.6311,
+    "ccs_winner": "B",
+    "f1_details": {
+      "IOU@0.3": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0358
+      },
+      "GIOU@0.3": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0345
+      },
+      "DIOU@0.3": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0353
+      },
+      "IOU@0.5": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0253
+      },
+      "GIOU@0.5": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0263
+      },
+      "DIOU@0.5": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0241
+      },
+      "IOU@0.7": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0001
+      },
+      "GIOU@0.7": {
+        "winner_f1": "A",
+        "winner_mf1": "B",
+        "delta_f1": 0.0026
+      },
+      "DIOU@0.7": {
+        "winner_f1": "A",
+        "winner_mf1": "B",
+        "delta_f1": 0.0019
+      }
+    },
+    "disagreements": [
+      "GIOU@0.7",
+      "DIOU@0.7"
+    ]
+  },
+  {
+    "model_A": "yolov11n",
+    "model_B": "yolov11m",
+    "ccs_A": 0.6453,
+    "ccs_B": 0.6311,
+    "ccs_winner": "A",
+    "f1_details": {
+      "IOU@0.3": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.0004
+      },
+      "GIOU@0.3": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.0018
+      },
+      "DIOU@0.3": {
+        "winner_f1": "B",
+        "winner_mf1": "A",
+        "delta_f1": -0.0018
+      },
+      "IOU@0.5": {
+        "winner_f1": "B",
+        "winner_mf1": "A",
+        "delta_f1": 0.0
+      },
+      "GIOU@0.5": {
+        "winner_f1": "B",
+        "winner_mf1": "B",
+        "delta_f1": -0.0016
+      },
+      "DIOU@0.5": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.002
+      },
+      "IOU@0.7": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.0027
+      },
+      "GIOU@0.7": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.0054
+      },
+      "DIOU@0.7": {
+        "winner_f1": "A",
+        "winner_mf1": "A",
+        "delta_f1": 0.0054
+      }
+    },
+    "disagreements": [
+      "DIOU@0.3",
+      "IOU@0.5",
+      "GIOU@0.5"
+    ]
+  }
+]

@@ -1,0 +1,530 @@
+[
+  {
+    "model": "yolov8n",
+    "alpha": 0.0,
+    "beta": 1.0,
+    "ccs": 0.6734,
+    "c_sp": 0.5731,
+    "c_sem": 0.6734
+  },
+  {
+    "model": "yolov8n",
+    "alpha": 0.1,
+    "beta": 0.9,
+    "ccs": 0.6634,
+    "c_sp": 0.5731,
+    "c_sem": 0.6734
+  },
+  {
+    "model": "yolov8n",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "ccs": 0.6533,
+    "c_sp": 0.5731,
+    "c_sem": 0.6734
+  },
+  {
+    "model": "yolov8n",
+    "alpha": 0.3,
+    "beta": 0.7,
+    "ccs": 0.6433,
+    "c_sp": 0.5731,
+    "c_sem": 0.6734
+  },
+  {
+    "model": "yolov8n",
+    "alpha": 0.4,
+    "beta": 0.6,
+    "ccs": 0.6333,
+    "c_sp": 0.5731,
+    "c_sem": 0.6734
+  },
+  {
+    "model": "yolov8n",
+    "alpha": 0.5,
+    "beta": 0.5,
+    "ccs": 0.6232,
+    "c_sp": 0.5731,
+    "c_sem": 0.6734
+  },
+  {
+    "model": "yolov8n",
+    "alpha": 0.6,
+    "beta": 0.4,
+    "ccs": 0.6132,
+    "c_sp": 0.5731,
+    "c_sem": 0.6734
+  },
+  {
+    "model": "yolov8n",
+    "alpha": 0.7,
+    "beta": 0.3,
+    "ccs": 0.6032,
+    "c_sp": 0.5731,
+    "c_sem": 0.6734
+  },
+  {
+    "model": "yolov8n",
+    "alpha": 0.8,
+    "beta": 0.2,
+    "ccs": 0.5931,
+    "c_sp": 0.5731,
+    "c_sem": 0.6734
+  },
+  {
+    "model": "yolov8n",
+    "alpha": 0.9,
+    "beta": 0.1,
+    "ccs": 0.5831,
+    "c_sp": 0.5731,
+    "c_sem": 0.6734
+  },
+  {
+    "model": "yolov8n",
+    "alpha": 1.0,
+    "beta": 0.0,
+    "ccs": 0.5731,
+    "c_sp": 0.5731,
+    "c_sem": 0.6734
+  },
+  {
+    "model": "yolov8m",
+    "alpha": 0.0,
+    "beta": 1.0,
+    "ccs": 0.701,
+    "c_sp": 0.594,
+    "c_sem": 0.701
+  },
+  {
+    "model": "yolov8m",
+    "alpha": 0.1,
+    "beta": 0.9,
+    "ccs": 0.6903,
+    "c_sp": 0.594,
+    "c_sem": 0.701
+  },
+  {
+    "model": "yolov8m",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "ccs": 0.6796,
+    "c_sp": 0.594,
+    "c_sem": 0.701
+  },
+  {
+    "model": "yolov8m",
+    "alpha": 0.3,
+    "beta": 0.7,
+    "ccs": 0.6689,
+    "c_sp": 0.594,
+    "c_sem": 0.701
+  },
+  {
+    "model": "yolov8m",
+    "alpha": 0.4,
+    "beta": 0.6,
+    "ccs": 0.6582,
+    "c_sp": 0.594,
+    "c_sem": 0.701
+  },
+  {
+    "model": "yolov8m",
+    "alpha": 0.5,
+    "beta": 0.5,
+    "ccs": 0.6475,
+    "c_sp": 0.594,
+    "c_sem": 0.701
+  },
+  {
+    "model": "yolov8m",
+    "alpha": 0.6,
+    "beta": 0.4,
+    "ccs": 0.6368,
+    "c_sp": 0.594,
+    "c_sem": 0.701
+  },
+  {
+    "model": "yolov8m",
+    "alpha": 0.7,
+    "beta": 0.3,
+    "ccs": 0.6261,
+    "c_sp": 0.594,
+    "c_sem": 0.701
+  },
+  {
+    "model": "yolov8m",
+    "alpha": 0.8,
+    "beta": 0.2,
+    "ccs": 0.6154,
+    "c_sp": 0.594,
+    "c_sem": 0.701
+  },
+  {
+    "model": "yolov8m",
+    "alpha": 0.9,
+    "beta": 0.1,
+    "ccs": 0.6047,
+    "c_sp": 0.594,
+    "c_sem": 0.701
+  },
+  {
+    "model": "yolov8m",
+    "alpha": 1.0,
+    "beta": 0.0,
+    "ccs": 0.594,
+    "c_sp": 0.594,
+    "c_sem": 0.701
+  },
+  {
+    "model": "yolov10n",
+    "alpha": 0.0,
+    "beta": 1.0,
+    "ccs": 0.6663,
+    "c_sp": 0.5719,
+    "c_sem": 0.6663
+  },
+  {
+    "model": "yolov10n",
+    "alpha": 0.1,
+    "beta": 0.9,
+    "ccs": 0.6568,
+    "c_sp": 0.5719,
+    "c_sem": 0.6663
+  },
+  {
+    "model": "yolov10n",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "ccs": 0.6474,
+    "c_sp": 0.5719,
+    "c_sem": 0.6663
+  },
+  {
+    "model": "yolov10n",
+    "alpha": 0.3,
+    "beta": 0.7,
+    "ccs": 0.638,
+    "c_sp": 0.5719,
+    "c_sem": 0.6663
+  },
+  {
+    "model": "yolov10n",
+    "alpha": 0.4,
+    "beta": 0.6,
+    "ccs": 0.6285,
+    "c_sp": 0.5719,
+    "c_sem": 0.6663
+  },
+  {
+    "model": "yolov10n",
+    "alpha": 0.5,
+    "beta": 0.5,
+    "ccs": 0.6191,
+    "c_sp": 0.5719,
+    "c_sem": 0.6663
+  },
+  {
+    "model": "yolov10n",
+    "alpha": 0.6,
+    "beta": 0.4,
+    "ccs": 0.6096,
+    "c_sp": 0.5719,
+    "c_sem": 0.6663
+  },
+  {
+    "model": "yolov10n",
+    "alpha": 0.7,
+    "beta": 0.3,
+    "ccs": 0.6002,
+    "c_sp": 0.5719,
+    "c_sem": 0.6663
+  },
+  {
+    "model": "yolov10n",
+    "alpha": 0.8,
+    "beta": 0.2,
+    "ccs": 0.5908,
+    "c_sp": 0.5719,
+    "c_sem": 0.6663
+  },
+  {
+    "model": "yolov10n",
+    "alpha": 0.9,
+    "beta": 0.1,
+    "ccs": 0.5813,
+    "c_sp": 0.5719,
+    "c_sem": 0.6663
+  },
+  {
+    "model": "yolov10n",
+    "alpha": 1.0,
+    "beta": 0.0,
+    "ccs": 0.5719,
+    "c_sp": 0.5719,
+    "c_sem": 0.6663
+  },
+  {
+    "model": "yolov10m",
+    "alpha": 0.0,
+    "beta": 1.0,
+    "ccs": 0.6877,
+    "c_sp": 0.5738,
+    "c_sem": 0.6877
+  },
+  {
+    "model": "yolov10m",
+    "alpha": 0.1,
+    "beta": 0.9,
+    "ccs": 0.6763,
+    "c_sp": 0.5738,
+    "c_sem": 0.6877
+  },
+  {
+    "model": "yolov10m",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "ccs": 0.6649,
+    "c_sp": 0.5738,
+    "c_sem": 0.6877
+  },
+  {
+    "model": "yolov10m",
+    "alpha": 0.3,
+    "beta": 0.7,
+    "ccs": 0.6535,
+    "c_sp": 0.5738,
+    "c_sem": 0.6877
+  },
+  {
+    "model": "yolov10m",
+    "alpha": 0.4,
+    "beta": 0.6,
+    "ccs": 0.6422,
+    "c_sp": 0.5738,
+    "c_sem": 0.6877
+  },
+  {
+    "model": "yolov10m",
+    "alpha": 0.5,
+    "beta": 0.5,
+    "ccs": 0.6308,
+    "c_sp": 0.5738,
+    "c_sem": 0.6877
+  },
+  {
+    "model": "yolov10m",
+    "alpha": 0.6,
+    "beta": 0.4,
+    "ccs": 0.6194,
+    "c_sp": 0.5738,
+    "c_sem": 0.6877
+  },
+  {
+    "model": "yolov10m",
+    "alpha": 0.7,
+    "beta": 0.3,
+    "ccs": 0.608,
+    "c_sp": 0.5738,
+    "c_sem": 0.6877
+  },
+  {
+    "model": "yolov10m",
+    "alpha": 0.8,
+    "beta": 0.2,
+    "ccs": 0.5966,
+    "c_sp": 0.5738,
+    "c_sem": 0.6877
+  },
+  {
+    "model": "yolov10m",
+    "alpha": 0.9,
+    "beta": 0.1,
+    "ccs": 0.5852,
+    "c_sp": 0.5738,
+    "c_sem": 0.6877
+  },
+  {
+    "model": "yolov10m",
+    "alpha": 1.0,
+    "beta": 0.0,
+    "ccs": 0.5738,
+    "c_sp": 0.5738,
+    "c_sem": 0.6877
+  },
+  {
+    "model": "yolov11n",
+    "alpha": 0.0,
+    "beta": 1.0,
+    "ccs": 0.6945,
+    "c_sp": 0.5962,
+    "c_sem": 0.6945
+  },
+  {
+    "model": "yolov11n",
+    "alpha": 0.1,
+    "beta": 0.9,
+    "ccs": 0.6846,
+    "c_sp": 0.5962,
+    "c_sem": 0.6945
+  },
+  {
+    "model": "yolov11n",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "ccs": 0.6748,
+    "c_sp": 0.5962,
+    "c_sem": 0.6945
+  },
+  {
+    "model": "yolov11n",
+    "alpha": 0.3,
+    "beta": 0.7,
+    "ccs": 0.665,
+    "c_sp": 0.5962,
+    "c_sem": 0.6945
+  },
+  {
+    "model": "yolov11n",
+    "alpha": 0.4,
+    "beta": 0.6,
+    "ccs": 0.6552,
+    "c_sp": 0.5962,
+    "c_sem": 0.6945
+  },
+  {
+    "model": "yolov11n",
+    "alpha": 0.5,
+    "beta": 0.5,
+    "ccs": 0.6453,
+    "c_sp": 0.5962,
+    "c_sem": 0.6945
+  },
+  {
+    "model": "yolov11n",
+    "alpha": 0.6,
+    "beta": 0.4,
+    "ccs": 0.6355,
+    "c_sp": 0.5962,
+    "c_sem": 0.6945
+  },
+  {
+    "model": "yolov11n",
+    "alpha": 0.7,
+    "beta": 0.3,
+    "ccs": 0.6257,
+    "c_sp": 0.5962,
+    "c_sem": 0.6945
+  },
+  {
+    "model": "yolov11n",
+    "alpha": 0.8,
+    "beta": 0.2,
+    "ccs": 0.6159,
+    "c_sp": 0.5962,
+    "c_sem": 0.6945
+  },
+  {
+    "model": "yolov11n",
+    "alpha": 0.9,
+    "beta": 0.1,
+    "ccs": 0.606,
+    "c_sp": 0.5962,
+    "c_sem": 0.6945
+  },
+  {
+    "model": "yolov11n",
+    "alpha": 1.0,
+    "beta": 0.0,
+    "ccs": 0.5962,
+    "c_sp": 0.5962,
+    "c_sem": 0.6945
+  },
+  {
+    "model": "yolov11m",
+    "alpha": 0.0,
+    "beta": 1.0,
+    "ccs": 0.6821,
+    "c_sp": 0.58,
+    "c_sem": 0.6821
+  },
+  {
+    "model": "yolov11m",
+    "alpha": 0.1,
+    "beta": 0.9,
+    "ccs": 0.6719,
+    "c_sp": 0.58,
+    "c_sem": 0.6821
+  },
+  {
+    "model": "yolov11m",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "ccs": 0.6617,
+    "c_sp": 0.58,
+    "c_sem": 0.6821
+  },
+  {
+    "model": "yolov11m",
+    "alpha": 0.3,
+    "beta": 0.7,
+    "ccs": 0.6515,
+    "c_sp": 0.58,
+    "c_sem": 0.6821
+  },
+  {
+    "model": "yolov11m",
+    "alpha": 0.4,
+    "beta": 0.6,
+    "ccs": 0.6413,
+    "c_sp": 0.58,
+    "c_sem": 0.6821
+  },
+  {
+    "model": "yolov11m",
+    "alpha": 0.5,
+    "beta": 0.5,
+    "ccs": 0.6311,
+    "c_sp": 0.58,
+    "c_sem": 0.6821
+  },
+  {
+    "model": "yolov11m",
+    "alpha": 0.6,
+    "beta": 0.4,
+    "ccs": 0.6209,
+    "c_sp": 0.58,
+    "c_sem": 0.6821
+  },
+  {
+    "model": "yolov11m",
+    "alpha": 0.7,
+    "beta": 0.3,
+    "ccs": 0.6107,
+    "c_sp": 0.58,
+    "c_sem": 0.6821
+  },
+  {
+    "model": "yolov11m",
+    "alpha": 0.8,
+    "beta": 0.2,
+    "ccs": 0.6005,
+    "c_sp": 0.58,
+    "c_sem": 0.6821
+  },
+  {
+    "model": "yolov11m",
+    "alpha": 0.9,
+    "beta": 0.1,
+    "ccs": 0.5902,
+    "c_sp": 0.58,
+    "c_sem": 0.6821
+  },
+  {
+    "model": "yolov11m",
+    "alpha": 1.0,
+    "beta": 0.0,
+    "ccs": 0.58,
+    "c_sp": 0.58,
+    "c_sem": 0.6821
+  }
+]

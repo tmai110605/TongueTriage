@@ -1,0 +1,1740 @@
+[
+  {
+    "model": "yolov8n",
+    "image": "A (12).jpg",
+    "ccs": 0.6643,
+    "c_sp": 0.5287,
+    "c_sem": 0.8,
+    "pair_details": [
+      {
+        "class": 1,
+        "class_name": "hongshe",
+        "iou": 0.9731,
+        "giou": 0.973,
+        "diou": 0.973,
+        "gaussian_sk": 0.9996
+      },
+      {
+        "class": 5,
+        "class_name": "chihenshe",
+        "iou": 0.1807,
+        "giou": 0.1807,
+        "diou": 0.1768,
+        "gaussian_sk": 0.6446
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.9628,
+        "giou": 0.9627,
+        "diou": 0.9628,
+        "gaussian_sk": 0.9992
+      }
+    ],
+    "ai_labels": [
+      1,
+      5,
+      6
+    ],
+    "gt_labels": [
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "1": 1,
+      "5": 1
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "1": 1,
+      "4": 1,
+      "5": 3,
+      "3": 25
+    },
+    "reason": "iou_ccs_gap;sem_mismatch;multi_box"
+  },
+  {
+    "model": "yolov8n",
+    "image": "A (14).jpg",
+    "ccs": 0.2917,
+    "c_sp": 0.0,
+    "c_sem": 0.5833,
+    "pair_details": [],
+    "ai_labels": [
+      1,
+      6
+    ],
+    "gt_labels": [
+      3,
+      7
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "1": 1
+    },
+    "gt_box_counts": {
+      "7": 1,
+      "3": 1
+    },
+    "reason": "sem_mismatch"
+  },
+  {
+    "model": "yolov8n",
+    "image": "A (15).jpg",
+    "ccs": 0.2005,
+    "c_sp": 0.0677,
+    "c_sem": 0.3333,
+    "pair_details": [
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.2163,
+        "giou": 0.1924,
+        "diou": 0.1331,
+        "gaussian_sk": 0.2031
+      }
+    ],
+    "ai_labels": [
+      6
+    ],
+    "gt_labels": [
+      2,
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1
+    },
+    "gt_box_counts": {
+      "5": 2,
+      "2": 1,
+      "6": 1
+    },
+    "reason": "multi_box"
+  },
+  {
+    "model": "yolov8n",
+    "image": "A (16).jpg",
+    "ccs": 0.9733,
+    "c_sp": 0.9466,
+    "c_sem": 1.0,
+    "pair_details": [
+      {
+        "class": 5,
+        "class_name": "chihenshe",
+        "iou": 0.6419,
+        "giou": 0.6184,
+        "diou": 0.6339,
+        "gaussian_sk": 0.9013
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.9113,
+        "giou": 0.9108,
+        "diou": 0.9105,
+        "gaussian_sk": 0.9919
+      }
+    ],
+    "ai_labels": [
+      5,
+      6
+    ],
+    "gt_labels": [
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 2,
+      "5": 2
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "5": 2
+    },
+    "reason": "multi_box"
+  },
+  {
+    "model": "yolov8n",
+    "image": "A (17).jpg",
+    "ccs": 0.2222,
+    "c_sp": 0.0,
+    "c_sem": 0.4444,
+    "pair_details": [],
+    "ai_labels": [
+      6
+    ],
+    "gt_labels": [
+      4,
+      7
+    ],
+    "ai_box_counts": {
+      "6": 1
+    },
+    "gt_box_counts": {
+      "4": 1,
+      "7": 1
+    },
+    "reason": "sem_mismatch"
+  },
+  {
+    "model": "yolov8n",
+    "image": "tongue (123).jpg",
+    "ccs": 0.6483,
+    "c_sp": 0.63,
+    "c_sem": 0.6667,
+    "pair_details": [
+      {
+        "class": 4,
+        "class_name": "liewenshe",
+        "iou": 0.4457,
+        "giou": 0.4457,
+        "diou": 0.4426,
+        "gaussian_sk": 0.8901
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.9818,
+        "giou": 0.9818,
+        "diou": 0.9818,
+        "gaussian_sk": 0.9997
+      }
+    ],
+    "ai_labels": [
+      1,
+      4,
+      6
+    ],
+    "gt_labels": [
+      4,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "1": 1,
+      "4": 1
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "4": 1
+    },
+    "reason": "iou_ccs_gap"
+  },
+  {
+    "model": "yolov8n",
+    "image": "tongue (14).jpg",
+    "ccs": 0.3605,
+    "c_sp": 0.2765,
+    "c_sem": 0.4444,
+    "pair_details": [
+      {
+        "class": 0,
+        "class_name": "botaishe",
+        "iou": 0.3362,
+        "giou": 0.3362,
+        "diou": 0.3325,
+        "gaussian_sk": 0.8296
+      }
+    ],
+    "ai_labels": [
+      0,
+      1,
+      6
+    ],
+    "gt_labels": [
+      0
+    ],
+    "ai_box_counts": {
+      "1": 1,
+      "6": 1,
+      "0": 1
+    },
+    "gt_box_counts": {
+      "0": 1
+    },
+    "reason": "iou_ccs_gap"
+  },
+  {
+    "model": "yolov8m",
+    "image": "A (1).jpg",
+    "ccs": 0.4166,
+    "c_sp": 0.3333,
+    "c_sem": 0.5,
+    "pair_details": [
+      {
+        "class": 2,
+        "class_name": "pangdashe",
+        "iou": 0.9765,
+        "giou": 0.9764,
+        "diou": 0.9765,
+        "gaussian_sk": 0.9998
+      }
+    ],
+    "ai_labels": [
+      2,
+      6
+    ],
+    "gt_labels": [
+      2,
+      4
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "2": 1
+    },
+    "gt_box_counts": {
+      "2": 1,
+      "4": 1
+    },
+    "reason": "sem_mismatch"
+  },
+  {
+    "model": "yolov8m",
+    "image": "A (12).jpg",
+    "ccs": 0.8202,
+    "c_sp": 0.7403,
+    "c_sem": 0.9,
+    "pair_details": [
+      {
+        "class": 1,
+        "class_name": "hongshe",
+        "iou": 0.968,
+        "giou": 0.9679,
+        "diou": 0.9679,
+        "gaussian_sk": 0.9996
+      },
+      {
+        "class": 3,
+        "class_name": "hongdianshe",
+        "iou": 0.5563,
+        "giou": 0.551,
+        "diou": 0.5314,
+        "gaussian_sk": 0.7388
+      },
+      {
+        "class": 4,
+        "class_name": "liewenshe",
+        "iou": 0.7701,
+        "giou": 0.7625,
+        "diou": 0.7655,
+        "gaussian_sk": 0.9635
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.969,
+        "giou": 0.9689,
+        "diou": 0.969,
+        "gaussian_sk": 0.9996
+      }
+    ],
+    "ai_labels": [
+      1,
+      3,
+      4,
+      6
+    ],
+    "gt_labels": [
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "4": 1,
+      "1": 1,
+      "3": 1
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "1": 1,
+      "4": 1,
+      "5": 3,
+      "3": 25
+    },
+    "reason": "sem_mismatch;multi_box"
+  },
+  {
+    "model": "yolov8m",
+    "image": "A (14).jpg",
+    "ccs": 0.3666,
+    "c_sp": 0.2,
+    "c_sem": 0.5333,
+    "pair_details": [
+      {
+        "class": 7,
+        "class_name": "huangtaishe",
+        "iou": 0.9823,
+        "giou": 0.9822,
+        "diou": 0.9822,
+        "gaussian_sk": 0.9998
+      }
+    ],
+    "ai_labels": [
+      1,
+      4,
+      6,
+      7
+    ],
+    "gt_labels": [
+      3,
+      7
+    ],
+    "ai_box_counts": {
+      "4": 1,
+      "1": 1,
+      "6": 1,
+      "7": 1
+    },
+    "gt_box_counts": {
+      "7": 1,
+      "3": 1
+    },
+    "reason": "sem_mismatch"
+  },
+  {
+    "model": "yolov8m",
+    "image": "A (15).jpg",
+    "ccs": 0.2008,
+    "c_sp": 0.0682,
+    "c_sem": 0.3333,
+    "pair_details": [
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.2186,
+        "giou": 0.1987,
+        "diou": 0.1356,
+        "gaussian_sk": 0.2046
+      }
+    ],
+    "ai_labels": [
+      6
+    ],
+    "gt_labels": [
+      2,
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1
+    },
+    "gt_box_counts": {
+      "5": 2,
+      "2": 1,
+      "6": 1
+    },
+    "reason": "multi_box"
+  },
+  {
+    "model": "yolov8m",
+    "image": "A (16).jpg",
+    "ccs": 0.7299,
+    "c_sp": 0.571,
+    "c_sem": 0.8889,
+    "pair_details": [
+      {
+        "class": 5,
+        "class_name": "chihenshe",
+        "iou": 0.395,
+        "giou": 0.3933,
+        "diou": 0.3843,
+        "gaussian_sk": 0.7179
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.9181,
+        "giou": 0.918,
+        "diou": 0.9177,
+        "gaussian_sk": 0.995
+      }
+    ],
+    "ai_labels": [
+      5,
+      6,
+      7
+    ],
+    "gt_labels": [
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "7": 1,
+      "5": 1
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "5": 2
+    },
+    "reason": "iou_ccs_gap;multi_box"
+  },
+  {
+    "model": "yolov8m",
+    "image": "A (52).jpg",
+    "ccs": 0.5764,
+    "c_sp": 0.4028,
+    "c_sem": 0.75,
+    "pair_details": [
+      {
+        "class": 5,
+        "class_name": "chihenshe",
+        "iou": 0.2188,
+        "giou": 0.2188,
+        "diou": 0.1954,
+        "gaussian_sk": 0.6115
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.979,
+        "giou": 0.979,
+        "diou": 0.979,
+        "gaussian_sk": 0.9999
+      }
+    ],
+    "ai_labels": [
+      1,
+      5,
+      6
+    ],
+    "gt_labels": [
+      3,
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "5": 2,
+      "1": 1
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "5": 2,
+      "3": 13
+    },
+    "reason": "iou_ccs_gap"
+  },
+  {
+    "model": "yolov8m",
+    "image": "tongue (11).jpg",
+    "ccs": 0.438,
+    "c_sp": 0.376,
+    "c_sem": 0.5,
+    "pair_details": [
+      {
+        "class": 4,
+        "class_name": "liewenshe",
+        "iou": 0.3428,
+        "giou": 0.3428,
+        "diou": 0.3343,
+        "gaussian_sk": 0.7521
+      }
+    ],
+    "ai_labels": [
+      4,
+      6
+    ],
+    "gt_labels": [
+      4
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "4": 1
+    },
+    "gt_box_counts": {
+      "4": 1
+    },
+    "reason": "iou_ccs_gap"
+  },
+  {
+    "model": "yolov10n",
+    "image": "A (100).jpg",
+    "ccs": 0.972,
+    "c_sp": 0.944,
+    "c_sem": 1.0,
+    "pair_details": [
+      {
+        "class": 4,
+        "class_name": "liewenshe",
+        "iou": 0.4393,
+        "giou": 0.4393,
+        "diou": 0.4381,
+        "gaussian_sk": 0.8882
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.9724,
+        "giou": 0.9723,
+        "diou": 0.9724,
+        "gaussian_sk": 0.9998
+      }
+    ],
+    "ai_labels": [
+      4,
+      6
+    ],
+    "gt_labels": [
+      4,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "4": 1
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "4": 1
+    },
+    "reason": "iou_ccs_gap"
+  },
+  {
+    "model": "yolov10n",
+    "image": "A (12).jpg",
+    "ccs": 0.5951,
+    "c_sp": 0.5903,
+    "c_sem": 0.6,
+    "pair_details": [
+      {
+        "class": 1,
+        "class_name": "hongshe",
+        "iou": 0.9697,
+        "giou": 0.9696,
+        "diou": 0.9696,
+        "gaussian_sk": 0.9993
+      },
+      {
+        "class": 3,
+        "class_name": "hongdianshe",
+        "iou": 0.752,
+        "giou": 0.7392,
+        "diou": 0.7474,
+        "gaussian_sk": 0.9527
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.9727,
+        "giou": 0.9727,
+        "diou": 0.9727,
+        "gaussian_sk": 0.9995
+      }
+    ],
+    "ai_labels": [
+      1,
+      3,
+      6
+    ],
+    "gt_labels": [
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "1": 1,
+      "3": 1
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "1": 1,
+      "4": 1,
+      "5": 3,
+      "3": 25
+    },
+    "reason": "multi_box"
+  },
+  {
+    "model": "yolov10n",
+    "image": "A (14).jpg",
+    "ccs": 0.4996,
+    "c_sp": 0.3325,
+    "c_sem": 0.6667,
+    "pair_details": [
+      {
+        "class": 7,
+        "class_name": "huangtaishe",
+        "iou": 0.9431,
+        "giou": 0.9427,
+        "diou": 0.9429,
+        "gaussian_sk": 0.9975
+      }
+    ],
+    "ai_labels": [
+      1,
+      7
+    ],
+    "gt_labels": [
+      3,
+      7
+    ],
+    "ai_box_counts": {
+      "7": 1,
+      "1": 1
+    },
+    "gt_box_counts": {
+      "7": 1,
+      "3": 1
+    },
+    "reason": "sem_mismatch"
+  },
+  {
+    "model": "yolov10n",
+    "image": "A (15).jpg",
+    "ccs": 0.2008,
+    "c_sp": 0.0683,
+    "c_sem": 0.3333,
+    "pair_details": [
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.2179,
+        "giou": 0.1952,
+        "diou": 0.1353,
+        "gaussian_sk": 0.2049
+      }
+    ],
+    "ai_labels": [
+      6
+    ],
+    "gt_labels": [
+      2,
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1
+    },
+    "gt_box_counts": {
+      "5": 2,
+      "2": 1,
+      "6": 1
+    },
+    "reason": "multi_box"
+  },
+  {
+    "model": "yolov10n",
+    "image": "A (16).jpg",
+    "ccs": 0.9195,
+    "c_sp": 0.839,
+    "c_sem": 1.0,
+    "pair_details": [
+      {
+        "class": 5,
+        "class_name": "chihenshe",
+        "iou": 0.3826,
+        "giou": 0.3826,
+        "diou": 0.3733,
+        "gaussian_sk": 0.7044
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.8548,
+        "giou": 0.8545,
+        "diou": 0.8522,
+        "gaussian_sk": 0.9736
+      }
+    ],
+    "ai_labels": [
+      5,
+      6
+    ],
+    "gt_labels": [
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 2,
+      "5": 1
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "5": 2
+    },
+    "reason": "iou_ccs_gap;multi_box"
+  },
+  {
+    "model": "yolov10n",
+    "image": "A (17).jpg",
+    "ccs": 0.1667,
+    "c_sp": 0.0,
+    "c_sem": 0.3333,
+    "pair_details": [],
+    "ai_labels": [
+      1,
+      6
+    ],
+    "gt_labels": [
+      4,
+      7
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "1": 1
+    },
+    "gt_box_counts": {
+      "4": 1,
+      "7": 1
+    },
+    "reason": "sem_mismatch"
+  },
+  {
+    "model": "yolov10n",
+    "image": "A (20).jpg",
+    "ccs": 0.3111,
+    "c_sp": 0.2472,
+    "c_sem": 0.375,
+    "pair_details": [
+      {
+        "class": 4,
+        "class_name": "liewenshe",
+        "iou": 0.8701,
+        "giou": 0.8669,
+        "diou": 0.869,
+        "gaussian_sk": 0.9889
+      }
+    ],
+    "ai_labels": [
+      1,
+      4,
+      6
+    ],
+    "gt_labels": [
+      2,
+      4
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "1": 1,
+      "4": 1
+    },
+    "gt_box_counts": {
+      "2": 1,
+      "4": 1
+    },
+    "reason": "sem_mismatch"
+  },
+  {
+    "model": "yolov10n",
+    "image": "tongue (11).jpg",
+    "ccs": 0.4334,
+    "c_sp": 0.3668,
+    "c_sem": 0.5,
+    "pair_details": [
+      {
+        "class": 4,
+        "class_name": "liewenshe",
+        "iou": 0.3258,
+        "giou": 0.3258,
+        "diou": 0.3176,
+        "gaussian_sk": 0.7337
+      }
+    ],
+    "ai_labels": [
+      4,
+      6
+    ],
+    "gt_labels": [
+      4
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "4": 1
+    },
+    "gt_box_counts": {
+      "4": 1
+    },
+    "reason": "iou_ccs_gap"
+  },
+  {
+    "model": "yolov10m",
+    "image": "A (12).jpg",
+    "ccs": 0.4988,
+    "c_sp": 0.3309,
+    "c_sem": 0.6667,
+    "pair_details": [
+      {
+        "class": 3,
+        "class_name": "hongdianshe",
+        "iou": 0.7812,
+        "giou": 0.7726,
+        "diou": 0.7808,
+        "gaussian_sk": 0.986
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.9697,
+        "giou": 0.9696,
+        "diou": 0.9696,
+        "gaussian_sk": 0.9993
+      }
+    ],
+    "ai_labels": [
+      2,
+      3,
+      6
+    ],
+    "gt_labels": [
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "3": 2,
+      "2": 1
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "1": 1,
+      "4": 1,
+      "5": 3,
+      "3": 25
+    },
+    "reason": "sem_mismatch;multi_box"
+  },
+  {
+    "model": "yolov10m",
+    "image": "A (14).jpg",
+    "ccs": 0.2333,
+    "c_sp": 0.0,
+    "c_sem": 0.4667,
+    "pair_details": [],
+    "ai_labels": [
+      1,
+      4,
+      6
+    ],
+    "gt_labels": [
+      3,
+      7
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "4": 2,
+      "1": 1
+    },
+    "gt_box_counts": {
+      "7": 1,
+      "3": 1
+    },
+    "reason": "sem_mismatch;multi_box"
+  },
+  {
+    "model": "yolov10m",
+    "image": "A (15).jpg",
+    "ccs": 0.2341,
+    "c_sp": 0.0516,
+    "c_sem": 0.4167,
+    "pair_details": [
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.2187,
+        "giou": 0.1956,
+        "diou": 0.1362,
+        "gaussian_sk": 0.2062
+      }
+    ],
+    "ai_labels": [
+      6,
+      7
+    ],
+    "gt_labels": [
+      2,
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "7": 1
+    },
+    "gt_box_counts": {
+      "5": 2,
+      "2": 1,
+      "6": 1
+    },
+    "reason": "sem_mismatch;multi_box"
+  },
+  {
+    "model": "yolov10m",
+    "image": "tongue (104).jpg",
+    "ccs": 0.9017,
+    "c_sp": 0.8034,
+    "c_sem": 1.0,
+    "pair_details": [
+      {
+        "class": 4,
+        "class_name": "liewenshe",
+        "iou": 0.3678,
+        "giou": 0.3533,
+        "diou": 0.3643,
+        "gaussian_sk": 0.6072
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.9737,
+        "giou": 0.9736,
+        "diou": 0.9737,
+        "gaussian_sk": 0.9996
+      }
+    ],
+    "ai_labels": [
+      4,
+      6
+    ],
+    "gt_labels": [
+      4,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "4": 1
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "4": 1
+    },
+    "reason": "iou_ccs_gap"
+  },
+  {
+    "model": "yolov10m",
+    "image": "tongue (11).jpg",
+    "ccs": 0.4357,
+    "c_sp": 0.3715,
+    "c_sem": 0.5,
+    "pair_details": [
+      {
+        "class": 4,
+        "class_name": "liewenshe",
+        "iou": 0.3195,
+        "giou": 0.3195,
+        "diou": 0.3118,
+        "gaussian_sk": 0.743
+      }
+    ],
+    "ai_labels": [
+      4,
+      6
+    ],
+    "gt_labels": [
+      4
+    ],
+    "ai_box_counts": {
+      "4": 1,
+      "6": 1
+    },
+    "gt_box_counts": {
+      "4": 1
+    },
+    "reason": "iou_ccs_gap"
+  },
+  {
+    "model": "yolov10m",
+    "image": "tongue (219).jpg",
+    "ccs": 0.4833,
+    "c_sp": 0.2166,
+    "c_sem": 0.75,
+    "pair_details": [
+      {
+        "class": 3,
+        "class_name": "hongdianshe",
+        "iou": 0.0,
+        "giou": -0.6511,
+        "diou": -0.4359,
+        "gaussian_sk": 0.0
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.4212,
+        "giou": 0.4212,
+        "diou": 0.4168,
+        "gaussian_sk": 0.8664
+      }
+    ],
+    "ai_labels": [
+      2,
+      3,
+      6
+    ],
+    "gt_labels": [
+      3,
+      4,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "3": 1,
+      "2": 1
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "4": 1,
+      "3": 7
+    },
+    "reason": "iou_ccs_gap"
+  },
+  {
+    "model": "yolov11n",
+    "image": "A (12).jpg",
+    "ccs": 0.4463,
+    "c_sp": 0.3925,
+    "c_sem": 0.5,
+    "pair_details": [
+      {
+        "class": 5,
+        "class_name": "chihenshe",
+        "iou": 0.6579,
+        "giou": 0.6579,
+        "diou": 0.6571,
+        "gaussian_sk": 0.9628
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.9827,
+        "giou": 0.9827,
+        "diou": 0.9827,
+        "gaussian_sk": 0.9999
+      }
+    ],
+    "ai_labels": [
+      5,
+      6
+    ],
+    "gt_labels": [
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "5": 2
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "1": 1,
+      "4": 1,
+      "5": 3,
+      "3": 25
+    },
+    "reason": "sem_mismatch;multi_box"
+  },
+  {
+    "model": "yolov11n",
+    "image": "A (14).jpg",
+    "ccs": 0.375,
+    "c_sp": 0.2499,
+    "c_sem": 0.5,
+    "pair_details": [
+      {
+        "class": 7,
+        "class_name": "huangtaishe",
+        "iou": 0.9769,
+        "giou": 0.9768,
+        "diou": 0.9769,
+        "gaussian_sk": 0.9998
+      }
+    ],
+    "ai_labels": [
+      1,
+      4,
+      7
+    ],
+    "gt_labels": [
+      3,
+      7
+    ],
+    "ai_box_counts": {
+      "7": 1,
+      "1": 1,
+      "4": 1
+    },
+    "gt_box_counts": {
+      "7": 1,
+      "3": 1
+    },
+    "reason": "sem_mismatch"
+  },
+  {
+    "model": "yolov11n",
+    "image": "A (15).jpg",
+    "ccs": 0.3176,
+    "c_sp": 0.3019,
+    "c_sem": 0.3333,
+    "pair_details": [
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.5545,
+        "giou": 0.5214,
+        "diou": 0.5521,
+        "gaussian_sk": 0.9056
+      }
+    ],
+    "ai_labels": [
+      6
+    ],
+    "gt_labels": [
+      2,
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 2
+    },
+    "gt_box_counts": {
+      "5": 2,
+      "2": 1,
+      "6": 1
+    },
+    "reason": "multi_box"
+  },
+  {
+    "model": "yolov11n",
+    "image": "A (16).jpg",
+    "ccs": 0.9698,
+    "c_sp": 0.9395,
+    "c_sem": 1.0,
+    "pair_details": [
+      {
+        "class": 5,
+        "class_name": "chihenshe",
+        "iou": 0.702,
+        "giou": 0.6911,
+        "diou": 0.6853,
+        "gaussian_sk": 0.8896
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.8977,
+        "giou": 0.8976,
+        "diou": 0.8968,
+        "gaussian_sk": 0.9894
+      }
+    ],
+    "ai_labels": [
+      5,
+      6
+    ],
+    "gt_labels": [
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 2,
+      "5": 2
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "5": 2
+    },
+    "reason": "multi_box"
+  },
+  {
+    "model": "yolov11n",
+    "image": "A (17).jpg",
+    "ccs": 0.1667,
+    "c_sp": 0.0,
+    "c_sem": 0.3333,
+    "pair_details": [],
+    "ai_labels": [
+      1,
+      6
+    ],
+    "gt_labels": [
+      4,
+      7
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "1": 1
+    },
+    "gt_box_counts": {
+      "4": 1,
+      "7": 1
+    },
+    "reason": "sem_mismatch"
+  },
+  {
+    "model": "yolov11n",
+    "image": "A (34).jpg",
+    "ccs": 0.9563,
+    "c_sp": 0.9126,
+    "c_sem": 1.0,
+    "pair_details": [
+      {
+        "class": 2,
+        "class_name": "pangdashe",
+        "iou": 0.9664,
+        "giou": 0.9663,
+        "diou": 0.9664,
+        "gaussian_sk": 0.9995
+      },
+      {
+        "class": 4,
+        "class_name": "liewenshe",
+        "iou": 0.316,
+        "giou": 0.2773,
+        "diou": 0.2835,
+        "gaussian_sk": 0.6671
+      },
+      {
+        "class": 5,
+        "class_name": "chihenshe",
+        "iou": 0.7701,
+        "giou": 0.7701,
+        "diou": 0.7696,
+        "gaussian_sk": 0.9861
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.9394,
+        "giou": 0.9389,
+        "diou": 0.9392,
+        "gaussian_sk": 0.9976
+      }
+    ],
+    "ai_labels": [
+      2,
+      4,
+      5,
+      6
+    ],
+    "gt_labels": [
+      2,
+      4,
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 2,
+      "2": 2,
+      "5": 2,
+      "4": 1
+    },
+    "gt_box_counts": {
+      "5": 2,
+      "6": 1,
+      "4": 1,
+      "2": 1
+    },
+    "reason": "iou_ccs_gap"
+  },
+  {
+    "model": "yolov11n",
+    "image": "tongue (104).jpg",
+    "ccs": 0.61,
+    "c_sp": 0.5533,
+    "c_sem": 0.6667,
+    "pair_details": [
+      {
+        "class": 4,
+        "class_name": "liewenshe",
+        "iou": 0.4473,
+        "giou": 0.4468,
+        "diou": 0.4456,
+        "gaussian_sk": 0.6601
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.977,
+        "giou": 0.977,
+        "diou": 0.977,
+        "gaussian_sk": 0.9997
+      }
+    ],
+    "ai_labels": [
+      1,
+      4,
+      6
+    ],
+    "gt_labels": [
+      4,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "1": 1,
+      "4": 1
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "4": 1
+    },
+    "reason": "iou_ccs_gap"
+  },
+  {
+    "model": "yolov11n",
+    "image": "tongue (11).jpg",
+    "ccs": 0.4369,
+    "c_sp": 0.3739,
+    "c_sem": 0.5,
+    "pair_details": [
+      {
+        "class": 4,
+        "class_name": "liewenshe",
+        "iou": 0.3495,
+        "giou": 0.3495,
+        "diou": 0.3404,
+        "gaussian_sk": 0.7477
+      }
+    ],
+    "ai_labels": [
+      4,
+      6
+    ],
+    "gt_labels": [
+      4
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "4": 1
+    },
+    "gt_box_counts": {
+      "4": 1
+    },
+    "reason": "iou_ccs_gap"
+  },
+  {
+    "model": "yolov11m",
+    "image": "A (12).jpg",
+    "ccs": 0.5981,
+    "c_sp": 0.5961,
+    "c_sem": 0.6,
+    "pair_details": [
+      {
+        "class": 1,
+        "class_name": "hongshe",
+        "iou": 0.9824,
+        "giou": 0.9824,
+        "diou": 0.9824,
+        "gaussian_sk": 0.9998
+      },
+      {
+        "class": 3,
+        "class_name": "hongdianshe",
+        "iou": 0.7476,
+        "giou": 0.7476,
+        "diou": 0.7471,
+        "gaussian_sk": 0.981
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.9811,
+        "giou": 0.9811,
+        "diou": 0.9811,
+        "gaussian_sk": 0.9998
+      }
+    ],
+    "ai_labels": [
+      1,
+      3,
+      6
+    ],
+    "gt_labels": [
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "1": 1,
+      "3": 4
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "1": 1,
+      "4": 1,
+      "5": 3,
+      "3": 25
+    },
+    "reason": "multi_box"
+  },
+  {
+    "model": "yolov11m",
+    "image": "A (14).jpg",
+    "ccs": 0.375,
+    "c_sp": 0.2499,
+    "c_sem": 0.5,
+    "pair_details": [
+      {
+        "class": 7,
+        "class_name": "huangtaishe",
+        "iou": 0.9738,
+        "giou": 0.9738,
+        "diou": 0.9738,
+        "gaussian_sk": 0.9997
+      }
+    ],
+    "ai_labels": [
+      1,
+      4,
+      7
+    ],
+    "gt_labels": [
+      3,
+      7
+    ],
+    "ai_box_counts": {
+      "7": 1,
+      "1": 1,
+      "4": 1
+    },
+    "gt_box_counts": {
+      "7": 1,
+      "3": 1
+    },
+    "reason": "sem_mismatch"
+  },
+  {
+    "model": "yolov11m",
+    "image": "A (15).jpg",
+    "ccs": 0.2008,
+    "c_sp": 0.0683,
+    "c_sem": 0.3333,
+    "pair_details": [
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.2183,
+        "giou": 0.1961,
+        "diou": 0.1352,
+        "gaussian_sk": 0.205
+      }
+    ],
+    "ai_labels": [
+      6
+    ],
+    "gt_labels": [
+      2,
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1
+    },
+    "gt_box_counts": {
+      "5": 2,
+      "2": 1,
+      "6": 1
+    },
+    "reason": "multi_box"
+  },
+  {
+    "model": "yolov11m",
+    "image": "A (16).jpg",
+    "ccs": 0.7444,
+    "c_sp": 0.6555,
+    "c_sem": 0.8333,
+    "pair_details": [
+      {
+        "class": 5,
+        "class_name": "chihenshe",
+        "iou": 0.8306,
+        "giou": 0.8271,
+        "diou": 0.8265,
+        "gaussian_sk": 0.9759
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.9112,
+        "giou": 0.9109,
+        "diou": 0.9103,
+        "gaussian_sk": 0.9907
+      }
+    ],
+    "ai_labels": [
+      2,
+      5,
+      6
+    ],
+    "gt_labels": [
+      5,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 2,
+      "5": 3,
+      "2": 1
+    },
+    "gt_box_counts": {
+      "6": 1,
+      "5": 2
+    },
+    "reason": "sem_mismatch;multi_box"
+  },
+  {
+    "model": "yolov11m",
+    "image": "A (17).jpg",
+    "ccs": 0.1667,
+    "c_sp": 0.0,
+    "c_sem": 0.3333,
+    "pair_details": [],
+    "ai_labels": [
+      1,
+      6
+    ],
+    "gt_labels": [
+      4,
+      7
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "1": 1
+    },
+    "gt_box_counts": {
+      "4": 1,
+      "7": 1
+    },
+    "reason": "sem_mismatch"
+  },
+  {
+    "model": "yolov11m",
+    "image": "tongue (11).jpg",
+    "ccs": 0.4128,
+    "c_sp": 0.3257,
+    "c_sem": 0.5,
+    "pair_details": [
+      {
+        "class": 4,
+        "class_name": "liewenshe",
+        "iou": 0.2984,
+        "giou": 0.2984,
+        "diou": 0.2851,
+        "gaussian_sk": 0.6514
+      }
+    ],
+    "ai_labels": [
+      4,
+      6
+    ],
+    "gt_labels": [
+      4
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "4": 1
+    },
+    "gt_box_counts": {
+      "4": 1
+    },
+    "reason": "iou_ccs_gap"
+  },
+  {
+    "model": "yolov11m",
+    "image": "tongue (162).jpg",
+    "ccs": 0.2952,
+    "c_sp": 0.2571,
+    "c_sem": 0.3333,
+    "pair_details": [
+      {
+        "class": 4,
+        "class_name": "liewenshe",
+        "iou": 0.3397,
+        "giou": 0.3397,
+        "diou": 0.3367,
+        "gaussian_sk": 0.7712
+      }
+    ],
+    "ai_labels": [
+      1,
+      4,
+      6
+    ],
+    "gt_labels": [
+      4
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "1": 1,
+      "4": 3
+    },
+    "gt_box_counts": {
+      "4": 1
+    },
+    "reason": "iou_ccs_gap"
+  },
+  {
+    "model": "yolov11m",
+    "image": "tongue (201).jpg",
+    "ccs": 0.7216,
+    "c_sp": 0.6931,
+    "c_sem": 0.75,
+    "pair_details": [
+      {
+        "class": 0,
+        "class_name": "botaishe",
+        "iou": 0.7927,
+        "giou": 0.7811,
+        "diou": 0.7905,
+        "gaussian_sk": 0.9678
+      },
+      {
+        "class": 4,
+        "class_name": "liewenshe",
+        "iou": 0.3415,
+        "giou": 0.3415,
+        "diou": 0.3305,
+        "gaussian_sk": 0.8047
+      },
+      {
+        "class": 6,
+        "class_name": "baitaishe",
+        "iou": 0.9856,
+        "giou": 0.9856,
+        "diou": 0.9856,
+        "gaussian_sk": 0.9999
+      }
+    ],
+    "ai_labels": [
+      0,
+      1,
+      4,
+      6
+    ],
+    "gt_labels": [
+      0,
+      4,
+      6
+    ],
+    "ai_box_counts": {
+      "6": 1,
+      "0": 2,
+      "4": 1,
+      "1": 1
+    },
+    "gt_box_counts": {
+      "0": 3,
+      "4": 1,
+      "6": 1
+    },
+    "reason": "iou_ccs_gap"
+  }
+]

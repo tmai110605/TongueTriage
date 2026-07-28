@@ -1,0 +1,204 @@
+{
+  "n_pooled_samples": 3300,
+  "entropy_weight": {
+    "alpha": 0.6392,
+    "beta": 0.3608
+  },
+  "std_proportional_weight": {
+    "alpha": 0.5302,
+    "beta": 0.4698
+  },
+  "default_weight": {
+    "alpha": 0.5,
+    "beta": 0.5
+  },
+  "ranking_stability": {
+    "rankings_by_alpha": {
+      "0.00": [
+        "yolov8m",
+        "yolov11n",
+        "yolov10m",
+        "yolov11m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.05": [
+        "yolov8m",
+        "yolov11n",
+        "yolov10m",
+        "yolov11m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.10": [
+        "yolov8m",
+        "yolov11n",
+        "yolov10m",
+        "yolov11m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.15": [
+        "yolov8m",
+        "yolov11n",
+        "yolov10m",
+        "yolov11m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.20": [
+        "yolov8m",
+        "yolov11n",
+        "yolov10m",
+        "yolov11m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.25": [
+        "yolov8m",
+        "yolov11n",
+        "yolov10m",
+        "yolov11m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.30": [
+        "yolov8m",
+        "yolov11n",
+        "yolov10m",
+        "yolov11m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.35": [
+        "yolov8m",
+        "yolov11n",
+        "yolov10m",
+        "yolov11m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.40": [
+        "yolov8m",
+        "yolov11n",
+        "yolov10m",
+        "yolov11m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.45": [
+        "yolov8m",
+        "yolov11n",
+        "yolov10m",
+        "yolov11m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.50": [
+        "yolov8m",
+        "yolov11n",
+        "yolov11m",
+        "yolov10m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.55": [
+        "yolov8m",
+        "yolov11n",
+        "yolov11m",
+        "yolov10m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.60": [
+        "yolov8m",
+        "yolov11n",
+        "yolov11m",
+        "yolov10m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.65": [
+        "yolov8m",
+        "yolov11n",
+        "yolov11m",
+        "yolov10m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.70": [
+        "yolov8m",
+        "yolov11n",
+        "yolov11m",
+        "yolov10m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.75": [
+        "yolov11n",
+        "yolov8m",
+        "yolov11m",
+        "yolov10m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.80": [
+        "yolov11n",
+        "yolov8m",
+        "yolov11m",
+        "yolov10m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.85": [
+        "yolov11n",
+        "yolov8m",
+        "yolov11m",
+        "yolov10m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.90": [
+        "yolov11n",
+        "yolov8m",
+        "yolov11m",
+        "yolov10m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "0.95": [
+        "yolov11n",
+        "yolov8m",
+        "yolov11m",
+        "yolov10m",
+        "yolov8n",
+        "yolov10n"
+      ],
+      "1.00": [
+        "yolov11n",
+        "yolov8m",
+        "yolov11m",
+        "yolov10m",
+        "yolov8n",
+        "yolov10n"
+      ]
+    },
+    "transition_points": [
+      0.5,
+      0.75
+    ],
+    "stable_range_around_0.5": [
+      0.5,
+      0.7
+    ],
+    "ranking_at_0.5": [
+      "yolov8m",
+      "yolov11n",
+      "yolov11m",
+      "yolov10m",
+      "yolov8n",
+      "yolov10n"
+    ]
+  },
+  "ranking_matches_default_at_entropy_alpha": true
+}
