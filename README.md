@@ -8,7 +8,7 @@ Traditional object detection metrics like mAP (based on IoU) often rely on hard 
 2. **$C_{sem}$ (Semantic Concordance)**: Semantic alignment between predicted labels and ground-truth, utilizing a taxonomy tree and Wu-Palmer similarity.
 
 **General Formula:**
-$$ \text{CCS} = \alpha \cdot C_{sp} + \beta \cdot C_{sem} $$
+$$CCS = \alpha \cdot C_{sp} + \beta \cdot C_{sem}$$
 
 ![Pipeline](img/fig_pipeline.png)
 
