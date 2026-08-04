@@ -1,5 +1,22 @@
 # TongueTriage: Continuous Concordance Score (CCS) for TCM Tongue Diagnosis
 
+## Citation
+
+If you use this work or metric in your research, please cite:
+
+Quoc Thai Mai. *CCS: A Continuous Spatial-Semantic Concordance Score for Robust Evaluation of Object Detection Models*, 30 July 2026, PREPRINT (Version 1) available at Research Square [[DOI: 10.21203/rs.3.rs-10531409/v1](https://doi.org/10.21203/rs.3.rs-10531409/v1)]
+
+```bibtex
+@article{mai2026ccs,
+  title={CCS: A Continuous Spatial-Semantic Concordance Score for Robust Evaluation of Object Detection Models},
+  author={Mai, Quoc Thai},
+  journal={Research Square},
+  year={2026},
+  doi={10.21203/rs.3.rs-10531409/v1},
+  note={Preprint (Version 1)}
+}
+```
+
 TongueTriage is a repository for the research proposing the **Continuous Concordance Score (CCS)** — a novel evaluation metric designed to compare AI (Object Detection) predictions with doctor annotations in Traditional Chinese Medicine (TCM) tongue diagnosis.
 
 Traditional object detection metrics like mAP (based on IoU) often rely on hard thresholds, which fail to reflect the "flexible" nature of medical diagnosis. CCS addresses this limitation by combining two components:
