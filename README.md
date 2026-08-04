@@ -1,4 +1,4 @@
-# TongueTriage: Continuous Concordance Score (CCS) for TCM Tongue Diagnosis
+# CCS: A Continuous Spatial-Semantic Concordance Score for Robust Evaluation of Object Detection Models
 
 ## Citation
 
