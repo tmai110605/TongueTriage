@@ -1,31 +1,27 @@
 """
 alpha_beta_optimization.py — Data-driven alpha/beta weighting for CCS.
 
-VẤN ĐỀ: CCS = alpha*C_sp + beta*C_sem với alpha=beta=0.5 mặc định, tự nhận
-trong CSS.md là "chưa tối ưu". Vì bài 1 KHÔNG có nhãn đồng thuận bác sĩ
-(việc đó thuộc bài 2 — acceptance study), ta KHÔNG THỂ tối ưu alpha/beta để
-khớp với "độ chấp nhận lâm sàng" — làm vậy sẽ lẫn scope 2 bài.
+PROBLEM: CCS = alpha*C_sp + beta*C_sem with default alpha=beta=0.5, acknowledged
+in CCS documentation as "not optimal". Since Part 1 DOES NOT have doctor consensus
+labels (which belongs to Part 2 — acceptance study), we CANNOT optimize alpha/beta
+to match "clinical acceptance degree" — doing so would mix the scopes of the two parts.
 
-Thay vào đó, module này dùng các phương pháp TRỌNG SỐ KHÁCH QUAN
-(objective weighting) chuẩn trong multi-criteria decision analysis (MCDM),
-chỉ dựa trên ĐỘ BIẾN THIÊN/PHÂN BIỆT của chính C_sp và C_sem quan sát được
-trên dữ liệu — không cần nhãn ngoài:
+Instead, this module uses standard OBJECTIVE WEIGHTING methods from Multi-Criteria
+Decision Analysis (MCDM), based solely on the VARIATION/DISCRIMINATION of C_sp and C_sem
+observed directly on the data — requiring no external labels:
 
-  1. Entropy weight method (Shannon entropy) — tiêu chí nào biến thiên/phân
-     biệt được các mẫu nhiều hơn thì được trọng số cao hơn. Kỹ thuật kinh
-     điển trong MCDM (bắt nguồn từ Shannon 1948, áp dụng rộng rãi từ thập
-     niên 1980s).
-  2. Std-proportional weighting (~ CRITIC method rút gọn cho đúng 2 tiêu
-     chí — với 2 tiêu chí, số hạng tương quan trong CRITIC tự triệt tiêu,
-     chỉ còn lại tỉ lệ độ lệch chuẩn).
-  3. Ranking-stability analysis — quét alpha 0->1, xem thứ hạng 6 model có
-     đổi hay không, tìm khoảng alpha "an toàn" quanh 0.5 và các điểm alpha
-     mà thứ hạng thực sự đổi (transition points).
+  1. Entropy weight method (Shannon entropy) — criteria with higher variation/discrimination
+     across samples receive higher weights. A classic MCDM technique (originating from
+     Shannon 1948, widely applied since the 1980s).
+  2. Std-proportional weighting (~ simplified CRITIC method for 2 criteria — with 2 criteria,
+     the correlation term in CRITIC cancels out, leaving only the standard deviation ratio).
+  3. Ranking-stability analysis — sweeps alpha from 0 to 1, checks if the ranking of 6 models
+     changes, identifies the "stable range" around 0.5 and transition points where ranking changes.
 
-LƯU Ý QUAN TRỌNG PHẢI GHI RÕ TRONG BÀI: các trọng số này phản ánh "tiêu chí
-nào phân biệt tốt hơn về mặt THỐNG KÊ giữa các mẫu/model quan sát được",
-KHÔNG phản ánh "bác sĩ coi trọng không gian hay ngữ nghĩa hơn trong thực
-tế lâm sàng". Đó là 2 câu hỏi khác nhau; câu hỏi sau cần acceptance study.
+IMPORTANT NOTE TO STATE IN PAPER: these weights reflect "which criterion discriminates
+better STATISTICALLY across observed samples/models", NOT "whether doctors value spatial
+or semantic aspects more in clinical practice". These are two different questions; the latter
+requires an acceptance study.
 """
 
 import math
@@ -39,9 +35,9 @@ import numpy as np
 
 def entropy_weights(csp_values, csem_values):
     """
-    Shannon entropy weighting. Trả về (alpha, beta), alpha+beta=1.
-    csp_values, csem_values: nên là TOÀN BỘ giá trị per-image, gộp từ mọi
-    model (càng nhiều mẫu, ước lượng entropy càng ổn định).
+    Shannon entropy weighting. Returns (alpha, beta), alpha+beta=1.
+    csp_values, csem_values: should be ALL per-image values, pooled from all models
+    (more samples lead to more stable entropy estimates).
     """
     csp = np.asarray(csp_values, dtype=np.float64)
     csem = np.asarray(csem_values, dtype=np.float64)
@@ -66,8 +62,8 @@ def entropy_weights(csp_values, csem_values):
 
 def std_proportional_weights(csp_values, csem_values):
     """
-    Trọng số tỉ lệ độ lệch chuẩn (~ CRITIC rút gọn cho 2 tiêu chí).
-    Tiêu chí biến thiên nhiều hơn giữa các mẫu được trọng số cao hơn.
+    Standard deviation ratio weighting (~ simplified CRITIC for 2 criteria).
+    Criteria with higher variation across samples receive higher weights.
     """
     csp = np.asarray(csp_values, dtype=np.float64)
     csem = np.asarray(csem_values, dtype=np.float64)
@@ -82,12 +78,12 @@ def std_proportional_weights(csp_values, csem_values):
 
 def ranking_stability_analysis(all_results, alphas=None):
     """
-    Với mỗi alpha, xếp hạng các model theo CCS=alpha*C_sp+(1-alpha)*C_sem
-    (dùng mean C_sp/C_sem của từng model). Trả về:
-      - rankings_by_alpha: xếp hạng ứng với mỗi alpha
-      - transition_points: các alpha mà thứ hạng đổi so với alpha liền trước
-      - stable_range_around_0.5: khoảng alpha rộng nhất chứa 0.5 mà thứ hạng
-        không đổi so với alpha=0.5
+    For each alpha, ranks models according to CCS = alpha*C_sp + (1-alpha)*C_sem
+    (using mean C_sp/C_sem for each model). Returns:
+      - rankings_by_alpha: ranking dictionary corresponding to each alpha
+      - transition_points: alphas where ranking changes relative to the previous alpha
+      - stable_range_around_0.5: widest alpha range containing 0.5 where ranking
+        remains unchanged relative to alpha=0.5
     """
     if alphas is None:
         alphas = [round(a, 2) for a in np.arange(0.0, 1.001, 0.05)]
@@ -130,10 +126,10 @@ def ranking_stability_analysis(all_results, alphas=None):
 
 def exp_alpha_beta_datadriven(all_results, output_dir):
     print("\n" + "=" * 70)
-    print("EXPERIMENT 8: Data-Driven Alpha/Beta Weighting (thay cho mặc định 0.5/0.5)")
+    print("EXPERIMENT: Data-Driven Alpha/Beta Weighting (replacing default 0.5/0.5)")
     print("=" * 70)
 
-    # gộp per-image C_sp, C_sem từ MỌI model để ước lượng trọng số khách quan
+    # pool per-image C_sp, C_sem from ALL models to estimate objective weights
     all_csp, all_csem = [], []
     for data in all_results.values():
         for img in data["per_image"]:
@@ -143,28 +139,28 @@ def exp_alpha_beta_datadriven(all_results, output_dir):
     alpha_ent, beta_ent = entropy_weights(all_csp, all_csem)
     alpha_std, beta_std = std_proportional_weights(all_csp, all_csem)
 
-    print(f"\n  Số mẫu per-image gộp từ {len(all_results)} model: {len(all_csp)}")
+    print(f"\n  Number of per-image samples pooled from {len(all_results)} models: {len(all_csp)}")
     print(f"  Entropy weight       : alpha={alpha_ent:.4f}  beta={beta_ent:.4f}")
     print(f"  Std-proportional (~CRITIC): alpha={alpha_std:.4f}  beta={beta_std:.4f}")
-    print(f"  Mặc định hiện dùng    : alpha=0.5000  beta=0.5000")
+    print(f"  Current default       : alpha=0.5000  beta=0.5000")
 
     stability = ranking_stability_analysis(all_results)
-    print(f"\n  Xếp hạng model tại alpha=0.5: {stability['ranking_at_0.5']}")
-    print(f"  Khoảng alpha ổn định quanh 0.5 (thứ hạng không đổi): "
+    print(f"\n  Model ranking at alpha=0.5: {stability['ranking_at_0.5']}")
+    print(f"  Stable alpha range around 0.5 (ranking unchanged): "
           f"[{stability['stable_range_around_0.5'][0]}, {stability['stable_range_around_0.5'][1]}]")
     if stability["transition_points"]:
-        print(f"  Các mốc alpha mà thứ hạng đổi: {stability['transition_points']}")
+        print(f"  Alpha values where ranking changes: {stability['transition_points']}")
     else:
-        print("  Thứ hạng KHÔNG đổi trên toàn miền alpha 0->1 -> kết luận về model tốt nhất")
-        print("  không phụ thuộc cách chọn alpha/beta (kết quả rất mạnh nếu đúng).")
+        print("  Ranking UNCHANGED across entire alpha range 0->1 -> conclusions on the best model")
+        print("  do not depend on alpha/beta choice (very strong result if true).")
 
-    # xếp hạng ứng với alpha khách quan (entropy) để so sánh với alpha=0.5
+    # rank at objective alpha (entropy) to compare with alpha=0.5
     a_ent_rounded = round(alpha_ent, 2)
     closest_alpha = min(stability["rankings_by_alpha"].keys(), key=lambda k: abs(float(k) - a_ent_rounded))
     ranking_at_entropy_alpha = stability["rankings_by_alpha"][closest_alpha]
     same_as_default = ranking_at_entropy_alpha == stability["ranking_at_0.5"]
-    print(f"\n  Xếp hạng tại alpha=entropy({alpha_ent:.2f}): {ranking_at_entropy_alpha}")
-    print(f"  Có giống xếp hạng tại alpha=0.5 không? {'CÓ' if same_as_default else 'KHÔNG'}")
+    print(f"\n  Ranking at alpha=entropy({alpha_ent:.2f}): {ranking_at_entropy_alpha}")
+    print(f"  Matches ranking at alpha=0.5? {'YES' if same_as_default else 'NO'}")
 
     result = {
         "n_pooled_samples": len(all_csp),
@@ -179,3 +175,4 @@ def exp_alpha_beta_datadriven(all_results, output_dir):
         json.dump(result, f, indent=2)
     print(f"\n  Saved to {save_path}")
     return result
+

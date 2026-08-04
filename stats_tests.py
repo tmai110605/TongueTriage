@@ -1,26 +1,25 @@
 """
 stats_tests.py — Statistical significance testing for CCS Paper Experiments.
 
-Giải quyết lỗ hổng: toàn bộ so sánh model trong v2 (flipped_pairs, summary_ranking)
-hiện chỉ dựa trên GIÁ TRỊ TRUNG BÌNH điểm — không có khoảng tin cậy, không có
-kiểm định. Với 6 model chênh nhau vài phần nghìn CCS (vd yolov10m 0.6413 vs
-yolov8m 0.6421), không thể biết chênh lệch đó có ý nghĩa hay chỉ là nhiễu.
+Addresses key gap: all model comparisons in v2 (flipped_pairs, summary_ranking)
+were previously based solely on MEAN scores — with no confidence intervals or hypothesis
+tests. With 6 models differing by a few thousandths in CCS (e.g., yolov10m 0.6413 vs
+yolov8m 0.6421), it is impossible to determine whether differences are meaningful or noise.
 
-Module này dùng lại chính các ảnh trong test set làm đơn vị resampling (mỗi
-ảnh độc lập), không cần train lại nhiều lần / không cần nhãn bác sĩ:
+This module reuses test set images as resampling units (each image treated independently),
+requiring no retraining or additional doctor labels:
 
-  1. bootstrap_score / paired_bootstrap_diff — bootstrap ở mức ảnh (image-level),
-     cho CI 95% và p-value hai phía cho HIỆU của bất kỳ hàm điểm nào (CCS, F1, mAP...).
-  2. wilcoxon_signed_rank — kiểm định phi tham số bắt cặp trên mảng điểm theo
-     từng ảnh (vd CCS mỗi ảnh của model A vs model B) — không phụ thuộc scipy.
-  3. spearman_rank_correlation — tương quan thứ hạng giữa 2 cách xếp hạng model
-     (vd xếp theo CCS vs xếp theo F1@0.5) — không phụ thuộc scipy.
+  1. bootstrap_score / paired_bootstrap_diff — image-level bootstrap providing 95% CIs
+     and two-sided p-values for DIFFERENCES in any score function (CCS, F1, mAP...).
+  2. wilcoxon_signed_rank — paired non-parametric test on per-image score arrays
+     (e.g., per-image CCS of Model A vs. Model B) — independent of scipy.
+  3. spearman_rank_correlation — rank correlation between 2 model ranking methods
+     (e.g., ranking by CCS vs. ranking by F1@0.5) — independent of scipy.
 
-CẢNH BÁO ĐA KIỂM ĐỊNH (multiple comparisons): với 6 model có C(6,2)=15 cặp,
-nếu kiểm định 15 lần ở alpha=0.05, xác suất có ít nhất 1 kết quả dương tính giả
-tăng đáng kể. exp_significance() báo cáo cả p-value thô LẪN ngưỡng
-Bonferroni-adjusted (alpha/15) — nên dùng ngưỡng đã hiệu chỉnh khi kết luận
-trong bài báo.
+MULTIPLE COMPARISONS WARNING: with 6 models yielding C(6,2)=15 pairs, testing 15 times
+at alpha=0.05 significantly inflates false positive risk. exp_significance() reports both
+raw p-values AND Bonferroni-adjusted threshold (alpha/15) — adjusted thresholds should be
+used for paper conclusions.
 """
 
 import math
@@ -34,8 +33,8 @@ import numpy as np
 
 def bootstrap_score(per_image, score_fn, n_boot=2000, ci=0.95, seed=42):
     """
-    CI 95% cho một hàm điểm bất kỳ score_fn(list_per_image_dict) -> float,
-    bằng resample ảnh có hoàn lại.
+    95% CI for any score function score_fn(list_per_image_dict) -> float,
+    via image resampling with replacement.
     """
     rng = np.random.default_rng(seed)
     n = len(per_image)
@@ -52,15 +51,14 @@ def bootstrap_score(per_image, score_fn, n_boot=2000, ci=0.95, seed=42):
 
 def paired_bootstrap_diff(per_image_a, per_image_b, score_fn, n_boot=5000, seed=42):
     """
-    per_image_a, per_image_b: CÙNG danh sách ảnh, CÙNG thứ tự (2 model chạy
-    trên cùng test set) -> mỗi lần resample lấy CÙNG chỉ số ảnh cho cả 2 model
-    (giữ đúng cấu trúc bắt cặp), rồi tính hiệu score_fn(A) - score_fn(B).
+    per_image_a, per_image_b: SAME image list, SAME order (2 models evaluated on same test set) ->
+    each resample step draws the SAME image indices for both models (preserving paired structure),
+    then computes score_fn(A) - score_fn(B).
 
-    score_fn: callable(list_per_image_dict) -> float. Có thể là mean CCS
-    (rẻ) hoặc F1 tổng hợp (đắt hơn vì phải chạy lại matching) — với score_fn
-    đắt, giảm n_boot xuống ~500-1000 để đỡ chậm.
+    score_fn: callable(list_per_image_dict) -> float. Can be mean CCS (fast) or pooled F1
+    (more expensive due to box matching) — for expensive score_fn, reduce n_boot to ~500-1000.
     """
-    assert len(per_image_a) == len(per_image_b), "Hai model phải chạy trên cùng danh sách ảnh, cùng thứ tự"
+    assert len(per_image_a) == len(per_image_b), "Both models must run on the exact same image list and order"
     n = len(per_image_a)
     rng = np.random.default_rng(seed)
     diffs = np.empty(n_boot)
@@ -85,7 +83,7 @@ def paired_bootstrap_diff(per_image_a, per_image_b, score_fn, n_boot=5000, seed=
     }
 
 
-# ─── Wilcoxon signed-rank (bắt cặp theo ảnh, tự cài đặt, không cần scipy) ──
+# ─── Wilcoxon signed-rank (paired per-image test, custom implementation) ───
 
 def _norm_cdf(x):
     return 0.5 * (1 + math.erf(x / math.sqrt(2)))
@@ -93,9 +91,9 @@ def _norm_cdf(x):
 
 def wilcoxon_signed_rank(values_a, values_b):
     """
-    Kiểm định Wilcoxon signed-rank (xấp xỉ chuẩn, không dùng scipy), cho 2
-    mảng điểm CÙNG ĐỘ DÀI, bắt cặp theo chỉ số (vd CCS từng ảnh của model A/B).
-    Cần n >= ~20 để xấp xỉ chuẩn đáng tin cậy (test set detection thường thừa).
+    Wilcoxon signed-rank test (normal approximation, no scipy dependency) for 2
+    EQUAL LENGTH score arrays, paired by index (e.g. per-image CCS for Model A/B).
+    Requires n >= ~20 for reliable normal approximation (test set detection easily satisfies this).
     """
     a = np.asarray(values_a, dtype=np.float64)
     b = np.asarray(values_b, dtype=np.float64)
@@ -103,7 +101,7 @@ def wilcoxon_signed_rank(values_a, values_b):
     d = d[d != 0]
     n = len(d)
     if n < 10:
-        return {"n_effective": int(n), "note": "n quá nhỏ (<10) để xấp xỉ chuẩn đáng tin cậy"}
+        return {"n_effective": int(n), "note": "n too small (<10) for reliable normal approximation"}
 
     abs_d = np.abs(d)
     order = np.argsort(abs_d)
@@ -139,12 +137,12 @@ def wilcoxon_signed_rank(values_a, values_b):
 
 def per_image_f1_array(per_image, thresh, metric, match_boxes_for_class_fn):
     """
-    F1 tính RIÊNG cho từng ảnh (không gộp cả tập trước khi tính), để có mảng
-    bắt cặp dùng cho Wilcoxon. match_boxes_for_class_fn: truyền lại
-    _match_boxes_for_class từ experiments_ccs_v2.py.
-    LƯU Ý: F1 từng ảnh dễ bị 0/1 cực đoan (ảnh có ít box) -> nhiễu hơn CCS
-    từng ảnh; Wilcoxon trên F1 từng ảnh nên xem là bổ sung, không thay cho
-    kiểm định trên F1 tổng hợp (paired_bootstrap_diff).
+    Computes F1 INDIVIDUALLY per image (without pooling first), producing a paired
+    array for Wilcoxon test. match_boxes_for_class_fn: pass _match_boxes_for_class
+    from experiments_ccs_v2.py.
+    NOTE: Per-image F1 is prone to 0/1 extremes (images with few boxes) -> noisier than
+    per-image CCS; Wilcoxon on per-image F1 should be viewed as supplementary, not
+    replacing pooled F1 paired bootstrap (paired_bootstrap_diff).
     """
     f1s = []
     for img in per_image:
@@ -163,7 +161,7 @@ def per_image_f1_array(per_image, thresh, metric, match_boxes_for_class_fn):
     return np.array(f1s)
 
 
-# ─── Spearman rank correlation (tự cài đặt, không cần scipy) ───────────────
+# ─── Spearman rank correlation (custom implementation) ───────────────────────
 
 def _rank_with_ties(x):
     order = np.argsort(x)
@@ -194,24 +192,24 @@ def spearman_rank_correlation(values_a, values_b):
 
 def exp_significance(all_results, match_boxes_for_class_fn, n_boot_ccs=2000, n_boot_f1=800, output_dir="."):
     """
-    Chạy toàn bộ pipeline kiểm định cho mọi cặp model:
-      - paired bootstrap + Wilcoxon trên CCS trung bình / từng ảnh
-      - paired bootstrap trên F1@0.5 (IoU) tổng hợp
-      - Spearman giữa xếp hạng theo CCS và xếp hạng theo F1@0.5 trên toàn bộ model
+    Runs full significance testing pipeline for all model pairs:
+      - paired bootstrap + Wilcoxon on mean / per-image CCS
+      - paired bootstrap on pooled F1@0.5 (IoU)
+      - Spearman correlation between CCS ranking and F1@0.5 ranking across all models
     """
     print("\n" + "=" * 70)
-    print("EXPERIMENT 7: Statistical Significance Testing")
+    print("EXPERIMENT: Statistical Significance Testing")
     print("=" * 70)
 
     models = list(all_results.keys())
     n_pairs = len(models) * (len(models) - 1) // 2
     alpha_bonferroni = 0.05 / n_pairs if n_pairs > 0 else 0.05
-    print(f"\n  Số cặp model: {n_pairs} -> ngưỡng Bonferroni-adjusted alpha = {alpha_bonferroni:.5f}")
+    print(f"\n  Number of model pairs: {n_pairs} -> Bonferroni-adjusted alpha threshold = {alpha_bonferroni:.5f}")
 
     def ccs_mean_fn(imgs):
         return float(np.mean([img["ccs"]["ccs"] for img in imgs]))
 
-    # F1@0.5 (IoU) tổng hợp — cần _match_boxes_for_class_fn từ script chính
+    # Pooled F1@0.5 (IoU) — requires _match_boxes_for_class_fn from main script
     def make_f1_fn(thresh, metric):
         def f1_fn(imgs):
             tp = fp = fn = 0
@@ -259,16 +257,16 @@ def exp_significance(all_results, match_boxes_for_class_fn, n_boot_ccs=2000, n_b
             print(f"    F1@0.5(IoU): diff={boot_f1['observed_diff']:+.4f}  95%CI=[{boot_f1['ci95_low']:+.4f}, {boot_f1['ci95_high']:+.4f}]  "
                   f"p={boot_f1['p_value']:.4f}")
             if boot_ccs["p_value"] >= alpha_bonferroni:
-                print(f"    -> KHÔNG có ý nghĩa thống kê sau hiệu chỉnh Bonferroni (p >= {alpha_bonferroni:.5f})")
+                print(f"    -> NOT statistically significant after Bonferroni correction (p >= {alpha_bonferroni:.5f})")
 
-    # Spearman giữa xếp hạng CCS và xếp hạng F1@0.5 trên toàn bộ model
+    # Spearman correlation between CCS ranking and F1@0.5 ranking across all models
     ccs_means = [ccs_mean_fn(all_results[m]["per_image"]) for m in models]
     f1_means = [f1_05_fn(all_results[m]["per_image"]) for m in models]
     rho = spearman_rank_correlation(ccs_means, f1_means)
 
-    print(f"\n  Spearman rho(xếp hạng CCS, xếp hạng F1@0.5 IoU) trên {len(models)} model = {rho:.4f}")
-    print("  (rho gần 1 nghĩa là 2 cách xếp hạng gần như giống nhau tổng thể — nếu CCS")
-    print("   thay đổi thứ hạng đáng kể so với F1, rho sẽ thấp hơn hẳn 1.)")
+    print(f"\n  Spearman rho(CCS ranking, F1@0.5 IoU ranking) across {len(models)} models = {rho:.4f}")
+    print("  (rho close to 1 means the two ranking methods are virtually identical overall — if CCS")
+    print("   substantially alters model rankings compared to F1, rho will be noticeably below 1.)")
 
     output = {
         "n_models": len(models),
@@ -282,3 +280,4 @@ def exp_significance(all_results, match_boxes_for_class_fn, n_boot_ccs=2000, n_b
         json.dump(output, f, indent=2)
     print(f"\n  Saved to {save_path}")
     return output
+

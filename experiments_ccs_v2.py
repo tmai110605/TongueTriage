@@ -23,7 +23,7 @@ from map_metrics import compute_map_5095, exp_map_comparison
 from nwd_baseline import exp_nwd_comparison
 from stats_tests import exp_significance
 from alpha_beta_optimization import exp_alpha_beta_datadriven
-MAP_CONF_THRESH = 0.001  # gần 0, cần để dựng đủ đường cong Precision-Recall cho AP
+MAP_CONF_THRESH = 0.001  # near 0, needed to build complete Precision-Recall curves for AP
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from ccs import (
     CLASS_NAMES_8,
@@ -169,8 +169,8 @@ def _eval_one_model(checkpoints, img_paths, label_dir, sem_matrix, model_name):
     imgsz = CHECKPOINT_IMGSZ[model_name]
     per_image = []
     for img_path in img_paths:
-        # conf=MAP_CONF_THRESH giữ lại cả box confidence thấp để tính mAP đầy đủ;
-        # tập ai_boxes (conf>=0.25) vẫn tách ra y hệt như trước -> kết quả F1/CCS cũ KHÔNG đổi.
+        # conf=MAP_CONF_THRESH retains low-confidence boxes for full mAP calculation;
+        # the ai_boxes set (conf>=0.25) remains separated as before -> existing F1/CCS results UNCHANGED.
         preds = model(img_path, imgsz=imgsz, device=DEVICE, verbose=False, iou=NMS_IOU, conf=MAP_CONF_THRESH)[0]
         ai_boxes_map = parse_yolo_preds(preds, MAP_CONF_THRESH)
         ai_boxes = parse_yolo_preds(preds, CONF_THRESH)

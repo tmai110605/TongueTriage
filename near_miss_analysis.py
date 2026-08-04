@@ -1,22 +1,22 @@
 """
-near_miss_analysis.py — Định lượng near-miss vs far-miss error cho các lớp khó.
+near_miss_analysis.py — Quantifying near-miss vs. far-miss error for hard classes.
 
-Trả lời câu hỏi ở §Class Imbalance (dòng 762-766 bài báo): trong số FP/FN của
-các lớp khó (hongdianshe, chihenshe, botaishe, liewenshe), bao nhiêu % là
-near-miss (best semantic match CÙNG nhánh taxonomy, similarity > 0) so với
-far-miss (hoàn toàn KHÁC nhánh, similarity = 0)?
+Answers the question in §Class Imbalance (lines 762-766 of the paper): among the FP/FN of
+hard classes (hongdianshe, chihenshe, botaishe, liewenshe), what percentage are
+near-misses (best semantic match in the SAME taxonomy branch, similarity > 0) compared to
+far-misses (completely DIFFERENT branch, similarity = 0)?
 
-Dùng lại đúng cấu trúc dữ liệu per_image như trong nwd_baseline.py
+Reuses the per_image data structure as in nwd_baseline.py
 (ai_boxes / gt_boxes: dict[class] -> list[box]).
 
-CÁCH DÙNG: import và gọi analyze_near_miss(all_results) với all_results có
-cùng cấu trúc {model_name: {"per_image": [...]}} như exp_nwd_comparison() đã
-dùng — không cần train lại hay chạy detector, chỉ phân tích lại kết quả đã có.
+USAGE: Import and call analyze_near_miss(all_results) with all_results having the
+same structure {model_name: {"per_image": [...]}} as used by exp_nwd_comparison() —
+no need to retrain or run detector, only re-analyzing existing results.
 
-LƯU Ý: nếu ai_boxes/gt_boxes của bạn dùng class_id dạng số thay vì tên lớp
-(vd. 0,1,2...), cần map ngược sang tên lớp (botaishe, hongshe, ...) trước khi
-gọi hàm này, vì W_SEM bên dưới được đánh index bằng tên lớp để khớp đúng
-Table tab:semantic-matrix trong bài.
+NOTE: If your ai_boxes/gt_boxes use numeric class_ids instead of class names
+(e.g., 0, 1, 2...), map them back to class names (botaishe, hongshe, ...) before
+calling this function, as W_SEM below is indexed by class names matching
+Table tab:semantic-matrix in the paper.
 """
 
 import json
@@ -32,7 +32,7 @@ CLASS_NAMES = {
     6: "baitaishe",
     7: "huangtaishe",
 }
-# Ma trận Wu-Palmer similarity, lấy nguyên từ Table tab:semantic-matrix trong bài
+# Wu-Palmer similarity matrix, taken directly from Table tab:semantic-matrix in the paper
 W_SEM = {
     "botaishe":    {"botaishe": 1.000, "hongshe": 0.000, "pangdashe": 0.000, "hongdianshe": 0.000, "liewenshe": 0.000, "chihenshe": 0.000, "baitaishe": 0.333, "huangtaishe": 0.333},
     "hongshe":     {"botaishe": 0.000, "hongshe": 1.000, "pangdashe": 0.000, "hongdianshe": 0.500, "liewenshe": 0.000, "chihenshe": 0.000, "baitaishe": 0.000, "huangtaishe": 0.000},
@@ -44,14 +44,14 @@ W_SEM = {
     "huangtaishe": {"botaishe": 0.333, "hongshe": 0.000, "pangdashe": 0.000, "hongdianshe": 0.000, "liewenshe": 0.000, "chihenshe": 0.000, "baitaishe": 0.667, "huangtaishe": 1.000},
 }
 
-# 4 lớp khó nhất theo Fig perclass-ap: mean AP@[.5:.95] < 0.13
+# 4 hardest classes according to Fig perclass-ap: mean AP@[.5:.95] < 0.13
 HARD_CLASSES = {"botaishe", "hongdianshe", "liewenshe", "chihenshe"}
 
 
 def _best_semantic_match(cls_k, other_side_classes):
-    """Similarity lớn nhất của cls_k so với các nhãn thực có ở phía đối diện
-    (giống hệt quy tắc c_k trong Eq. csem-percls của bài, chỉ khác là ở đây
-    ta giữ lại nhãn nào cho ra best-match, để audit thủ công nếu cần)."""
+    """Highest similarity of cls_k compared to actual labels on the opposite side
+    (identical to c_k rule in Eq. csem-percls of the paper, except here we keep
+    track of which label gives the best match for manual auditing if needed)."""
     if not other_side_classes:
         return 0.0, None
     best_sim, best_cls = 0.0, None
@@ -77,7 +77,7 @@ def analyze_near_miss(all_results, hard_classes=HARD_CLASSES):
 
         per_image = data["per_image"]
 
-        # Records của RIÊNG model hiện tại
+        # Records for current model ONLY
         records = []
 
         # ======================================================
@@ -268,120 +268,6 @@ def analyze_near_miss(all_results, hard_classes=HARD_CLASSES):
     )
 
     return summary_rows, pooled_pct
-    """
-    Với mỗi model: gom toàn bộ FP/FN của các lớp khó, phân loại
-    near-miss (best_sim > 0, tức LCS cùng nhánh taxonomy) vs
-    far-miss (best_sim == 0, khác nhánh hoàn toàn / không có nhãn nào ở
-    phía đối diện). Đây chính là số liệu định lượng cho tuyên bố ở
-    §Class Imbalance của bài (hiện đang chỉ suy luận định tính).
-    """
-    print("\n" + "=" * 70)
-    print("NEAR-MISS vs FAR-MISS ANALYSIS — Hard Classes")
-    print("=" * 70)
-
-    summary_rows = []
-    for model_name, data in all_results.items():
-        per_image = data["per_image"]
-        records = []  # chi tiết từng FP/FN, để soi lại ảnh cụ thể nếu cần
-
-    for img in per_image:
-
-        ai_boxes = img["ai_boxes"]
-        gt_boxes = img["gt_boxes"]
-
-        # ==========================================================
-        # Convert class IDs → class names
-        # ==========================================================
-        ai_classes = {
-            CLASS_NAMES[class_id]
-            for class_id in ai_boxes.keys()
-            if class_id in CLASS_NAMES
-        }
-
-        gt_classes = {
-            CLASS_NAMES[class_id]
-            for class_id in gt_boxes.keys()
-            if class_id in CLASS_NAMES
-        }
-
-        # ==========================================================
-        # False Positive:
-        # AI predicts class, GT does not contain class
-        # ==========================================================
-        for k in (ai_classes - gt_classes) & hard_classes:
-
-            sim, match = _best_semantic_match(
-                k,
-                gt_classes
-            )
-
-            records.append({
-                "image": img.get("img_name", "?"),
-                "class": k,
-                "type": "FP",
-                "best_sim": sim,
-                "matched_with": match,
-            })
-
-        # ==========================================================
-        # False Negative:
-        # GT contains class, AI does not predict class
-        # ==========================================================
-        for k in (gt_classes - ai_classes) & hard_classes:
-
-            sim, match = _best_semantic_match(
-                k,
-                ai_classes
-            )
-
-            records.append({
-                "image": img.get("img_name", "?"),
-                "class": k,
-                "type": "FN",
-                "best_sim": sim,
-                "matched_with": match,
-            })
-        n_total = len(records)
-        n_near = sum(1 for r in records if r["best_sim"] > 0)
-        n_far = n_total - n_near
-        pct_near = round(100 * n_near / n_total, 1) if n_total else 0.0
-
-        # tách theo từng lớp khó để biết lớp nào "được cứu" nhiều nhất
-        per_class = defaultdict(lambda: {"total": 0, "near": 0})
-        for r in records:
-            per_class[r["class"]]["total"] += 1
-            if r["best_sim"] > 0:
-                per_class[r["class"]]["near"] += 1
-        per_class_pct = {
-            k: {"total": v["total"], "near": v["near"],
-                "pct_near": round(100 * v["near"] / v["total"], 1) if v["total"] else 0.0}
-            for k, v in per_class.items()
-        }
-
-        summary_rows.append({
-            "model": model_name,
-            "total_hardclass_errors": n_total,
-            "near_miss": n_near,
-            "far_miss": n_far,
-            "pct_near_miss": pct_near,
-            "per_class": per_class_pct,
-        })
-
-    header = f"{'Model':<10} {'Total':<8} {'Near-miss':<10} {'Far-miss':<10} {'% Near':<8}"
-    print(f"\n{header}")
-    print("-" * len(header))
-    for r in summary_rows:
-        print(f"{r['model']:<10} {r['total_hardclass_errors']:<8} "
-              f"{r['near_miss']:<10} {r['far_miss']:<10} {r['pct_near_miss']:<8}")
-
-    # Trung bình trên toàn bộ 6 model — con số dùng để chèn thẳng vào bài
-    total_all = sum(r["total_hardclass_errors"] for r in summary_rows)
-    near_all = sum(r["near_miss"] for r in summary_rows)
-    pooled_pct = round(100 * near_all / total_all, 1) if total_all else 0.0
-    print(f"\n  Pooled across all models: {near_all}/{total_all} "
-          f"({pooled_pct}%) of hard-class errors are near-miss confusions.")
-
-    return summary_rows, pooled_pct
 
 
 def save_near_miss_report(summary_rows, pooled_pct, output_dir):
@@ -390,3 +276,4 @@ def save_near_miss_report(summary_rows, pooled_pct, output_dir):
         json.dump({"pooled_pct_near_miss": pooled_pct, "rows": summary_rows},
                    f, indent=2, ensure_ascii=False)
     print(f"\n  Saved to {save_path}")
+

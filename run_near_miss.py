@@ -23,7 +23,7 @@ def main():
 
     sem_matrix = build_semantic_matrix()
 
-    # Dùng trực tiếp CHECKPOINTS
+    # Use CHECKPOINTS directly
     checkpoints = CHECKPOINTS
 
     print("\n" + "=" * 70)

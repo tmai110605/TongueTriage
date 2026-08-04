@@ -1,17 +1,14 @@
 """
 map_metrics.py — COCO-style mAP@[0.5:0.95] baseline for CCS Paper Experiments v2.
 
-Đây là baseline quan trọng vì mAP@[0.5:0.95] (trung bình AP trên 10 ngưỡng IoU
-0.50, 0.55, ..., 0.95) chính là giải pháp chuẩn của cộng đồng detection cho
-đúng vấn đề "threshold sensitivity" mà CCS đang dùng để lập luận. Nếu bài báo
-không so sánh với mAP@[0.5:0.95], reviewer sẽ hỏi ngay "sao không dùng luôn
-COCO mAP?" — module này giúp trả lời câu đó bằng số liệu thực tế.
+This is a critical baseline because mAP@[0.5:0.95] (mean AP across 10 IoU thresholds:
+0.50, 0.55, ..., 0.95) is the detection community's standard solution for the exact
+"threshold sensitivity" problem that CCS addresses. If the paper does not compare
+against mAP@[0.5:0.95], reviewers will ask "why not use COCO mAP directly?" — this
+module answers that question using empirical data.
 
-KHÔNG sửa gì trong ccs.py. Chỉ cần import 3 hàm _compute_iou/_giou/_diou đã có
-sẵn trong experiments_ccs_v2.py (không viết lại) và dùng lại cấu trúc per_image
-mà _eval_one_model() đã tạo ra.
-
-Cách tích hợp: xem 3 chỗ sửa trong hướng dẫn kèm theo (không lặp lại ở đây).
+DO NOT modify ccs.py. Simply import the 3 functions `_compute_iou`, `_compute_giou`, `_compute_diou`
+from `experiments_ccs_v2.py` (do not rewrite) and reuse the `per_image` structure created by `_eval_one_model()`.
 """
 
 import json
@@ -24,11 +21,11 @@ import numpy as np
 # ─── AP core (COCO 101-point interpolation) ─────────────────────────────────
 
 def _compute_ap_101point(recalls, precisions):
-    """AP nội suy 101 điểm, đúng chuẩn COCO eval (pycocotools)."""
+    """101-point interpolated AP, following standard COCO eval (pycocotools)."""
     recalls = np.asarray(recalls, dtype=np.float64)
     precisions = np.asarray(precisions, dtype=np.float64)
 
-    # ép precision đơn điệu giảm từ phải sang trái (envelope chuẩn PR curve)
+    # force precision to be monotonically decreasing from right to left (standard PR curve envelope)
     for i in range(len(precisions) - 2, -1, -1):
         precisions[i] = max(precisions[i], precisions[i + 1])
 
@@ -43,17 +40,17 @@ def _compute_ap_101point(recalls, precisions):
 
 def _ap_for_class_at_iou(dets, gts_by_img, iou_thresh, sim_fn):
     """
-    AP cho MỘT lớp, ở MỘT ngưỡng IoU/GIoU/DIoU cụ thể, gộp trên toàn bộ ảnh.
+    AP for ONE class at ONE specific IoU/GIoU/DIoU threshold, aggregated across all images.
 
-    dets: list các tuple (img_idx, box[x1,y1,x2,y2], score) — PHẢI là tập đầy đủ,
-          KHÔNG lọc theo confidence trước, nếu không đường cong PR sẽ bị cắt cụt
-          và AP tính ra sẽ thấp hơn thực tế.
-    gts_by_img: dict img_idx -> list các GT box [x1,y1,x2,y2] của lớp đó.
-    sim_fn: một trong _compute_iou / _compute_giou / _compute_diou.
+    dets: list of tuples (img_idx, box[x1,y1,x2,y2], score) — MUST be the complete set,
+          NOT filtered by confidence beforehand, otherwise the PR curve will be truncated
+          and calculated AP will be lower than actual.
+    gts_by_img: dict img_idx -> list of GT boxes [x1,y1,x2,y2] for that class.
+    sim_fn: one of _compute_iou / _compute_giou / _compute_diou.
     """
     total_gt = sum(len(v) for v in gts_by_img.values())
     if total_gt == 0:
-        return None  # lớp không xuất hiện trong GT -> AP không xác định (quy ước COCO: bỏ qua)
+        return None  # class does not appear in GT -> AP undefined (COCO convention: skip)
 
     dets_sorted = sorted(dets, key=lambda d: d[2], reverse=True)
     matched = {img_idx: set() for img_idx in gts_by_img}
@@ -88,13 +85,12 @@ def _ap_for_class_at_iou(dets, gts_by_img, iou_thresh, sim_fn):
 
 def compute_map_5095(per_image, metric_fns, metric="iou", box_field="ai_boxes_map"):
     """
-    Tính mAP@[.5:.95], mAP@.5, mAP@.75 cho MỘT model, theo metric IoU/GIoU/DIoU.
+    Computes mAP@[.5:.95], mAP@.5, mAP@.75 for ONE model, using IoU/GIoU/DIoU metric.
 
-    per_image: list dict do _eval_one_model() trả về (đã cache sẵn).
+    per_image: list of dicts returned by _eval_one_model() (cached).
     metric_fns: dict {"iou": _compute_iou, "giou": _compute_giou, "diou": _compute_diou}
-                (truyền lại 3 hàm đã có sẵn trong experiments_ccs_v2.py, không viết lại).
-    box_field: key chứa detection CHƯA lọc confidence — mặc định "ai_boxes_map"
-               (xem hướng dẫn sửa _eval_one_model để tạo field này).
+                (passed from existing functions in experiments_ccs_v2.py, not rewritten).
+    box_field: key containing UNFILTERED confidence detections — default "ai_boxes_map".
     """
     sim_fn = metric_fns[metric]
     iou_range = [round(x, 2) for x in np.arange(0.50, 1.00, 0.05)]  # 0.50..0.95
@@ -142,19 +138,19 @@ def compute_map_5095(per_image, metric_fns, metric="iou", box_field="ai_boxes_ma
     }
 
 
-# ─── Experiment wrapper (giữ đúng style print/save như các exp_* khác) ──────
+# ─── Experiment wrapper ─────────────────────────────────────────────────────
 
 def exp_map_comparison(all_results, metric_fns, output_dir):
     """
-    Chạy compute_map_5095 cho mọi model x {iou, giou, diou}, in bảng, lưu
-    map_5095.json, và trả về rows để main() gộp thêm vào summary_ranking.
+    Runs compute_map_5095 for all models x {iou, giou, diou}, prints table,
+    saves map_5095.json, and returns rows for main() to merge into summary_ranking.
     """
     print("\n" + "=" * 70)
-    print("EXPERIMENT 5: COCO-style mAP@[0.5:0.95] (IoU / GIoU / DIoU) vs CCS")
+    print("EXPERIMENT: COCO-style mAP@[0.5:0.95] (IoU / GIoU / DIoU) vs CCS")
     print("=" * 70)
 
     rows = []
-    per_class_rows = []  # giữ lại breakdown theo từng lớp trong 8 lớp, không vứt đi
+    per_class_rows = []  # retain per-class breakdown for all 8 classes
     for model_name, model_data in all_results.items():
         per_image = model_data["per_image"]
         ccs_mean = float(np.mean([img["ccs"]["ccs"] for img in per_image]))
@@ -195,4 +191,4 @@ def exp_map_comparison(all_results, metric_fns, output_dir):
         json.dump(per_class_rows, f, indent=2)
     print(f"  Saved per-class breakdown to {per_class_path}")
 
-    return rows
+    return rows

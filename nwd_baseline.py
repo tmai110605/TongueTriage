@@ -1,21 +1,20 @@
 """
 nwd_baseline.py — Normalized Wasserstein Distance (NWD) baseline.
 
-Tài liệu tham khảo: Wang, J. et al. (2021), "A Normalized Gaussian Wasserstein
+Reference: Wang, J. et al. (2021), "A Normalized Gaussian Wasserstein
 Distance for Tiny Object Detection", arXiv:2110.13389.
 
-TẠI SAO CẦN BASELINE NÀY: NWD cũng model bounding box thành Gaussian 2D
-giống C_sp, nhưng dùng khoảng cách Wasserstein thay vì cosine similarity
-chuẩn hóa. Đây là "họ hàng gần nhất" của C_sp trong literature — nếu bài báo
-không so sánh, reviewer quen NWD/GWD/KLD sẽ hỏi ngay "khác gì NWD?". Module
-này giúp trả lời bằng số liệu: (1) F1 theo threshold dùng NWD làm metric
-matching, y hệt cấu trúc IoU/GIoU/DIoU đã có, và (2) một "NWD liên tục"
-(không ngưỡng) tính song song C_sp để so sánh trực tiếp + đo tương quan.
+WHY THIS BASELINE IS NEEDED: NWD also models bounding boxes as 2D Gaussians
+like C_sp, but uses Wasserstein distance instead of normalized cosine similarity.
+This is C_sp's closest relative in literature — if the paper does not compare against it,
+reviewers familiar with NWD/GWD/KLD will ask "how does this differ from NWD?".
+This module answers with empirical evidence: (1) threshold-based F1 using NWD as matching
+metric, matching IoU/GIoU/DIoU structure, and (2) a continuous (threshold-less) NWD
+computed alongside C_sp for direct comparison and correlation measurement.
 
-Quy ước box của NWD gốc: R=(cx,cy,w,h) -> Gaussian N(mu, Sigma) với
-mu=(cx,cy), Sigma=diag(w^2/4, h^2/4) (KHÁC với sigma=(max-min)/4 mà C_sp
-trong ccs.py dùng — đây là 2 cách model hóa khác nhau, đúng theo bài gốc
-của mỗi phương pháp, không phải lỗi).
+Box convention of original NWD: R=(cx,cy,w,h) -> Gaussian N(mu, Sigma) with
+mu=(cx,cy), Sigma=diag(w^2/4, h^2/4) (DIFFERENT from sigma=(max-min)/4 used by C_sp
+in ccs.py — these are two different modeling choices, faithful to each paper's original formulation).
 """
 
 import math
@@ -29,9 +28,9 @@ import numpy as np
 
 def _compute_nwd(box_a, box_b, C):
     """
-    NWD giữa 2 box [x1,y1,x2,y2], theo đúng công thức Wang et al. 2021.
-    Trả về giá trị trong (0,1], 1 = trùng khớp hoàn toàn.
-    C: hằng số chuẩn hóa phụ thuộc dataset (>0), xem estimate_nwd_constant().
+    NWD between 2 boxes [x1,y1,x2,y2], following Wang et al. 2021.
+    Returns a value in (0,1], 1 = exact match.
+    C: dataset-dependent normalization constant (>0), see estimate_nwd_constant().
     """
     cx_a, cy_a = (box_a[0] + box_a[2]) / 2, (box_a[1] + box_a[3]) / 2
     w_a, h_a = box_a[2] - box_a[0], box_a[3] - box_a[1]
@@ -45,10 +44,9 @@ def _compute_nwd(box_a, box_b, C):
 
 def estimate_nwd_constant(per_image_any_model):
     """
-    C = trung bình sqrt(w*h) của toàn bộ GT box trong tập test — đúng tinh
-    thần bài gốc (họ dùng "average absolute size" của dataset AI-TOD, KHÔNG
-    dùng giá trị hardcode của dataset khác). GT giống nhau ở mọi model nên
-    chỉ cần truyền per_image của 1 model bất kỳ.
+    C = mean sqrt(w*h) of all GT boxes in test set — following the original paper
+    (they use average absolute size of AI-TOD dataset, NOT hardcoded values from another dataset).
+    GT is identical across models, so passing per_image from any single model is sufficient.
     """
     sizes = []
     for img in per_image_any_model:
@@ -60,7 +58,7 @@ def estimate_nwd_constant(per_image_any_model):
     return float(np.mean(sizes)) if sizes else 1.0
 
 
-# ─── Threshold-based matching bằng NWD (song song IoU/GIoU/DIoU) ───────────
+# ─── Threshold-based matching via NWD (parallel to IoU/GIoU/DIoU) ─────────
 
 def _match_boxes_nwd(ai_list, gt_list, thresh, C):
     unmatched_gt = list(range(len(gt_list)))
@@ -98,13 +96,13 @@ def _accumulate_nwd(per_image, thresh, C):
     return {"precision": round(p, 4), "recall": round(r, 4), "f1": round(f1, 4)}
 
 
-# ─── NWD liên tục (không ngưỡng) — so sánh trực tiếp với C_sp ──────────────
+# ─── Continuous NWD (threshold-less) — direct comparison with C_sp ──────────
 
 def continuous_nwd_per_image(per_image, C):
     """
-    Với mỗi ảnh: với mỗi nhãn ở AI hoặc GT, lấy NWD của cặp khớp tốt nhất
-    (quy ước 0 nếu nhãn chỉ có ở một phía) rồi trung bình trên ảnh — cùng
-    quy ước như C_sp trong ccs.py, để so sánh táo với táo.
+    For each image: for each label present in AI or GT, takes NWD of the best matching pair
+    (conventionally 0 if label exists on one side only) then averages across the image —
+    same convention as C_sp in ccs.py, enabling apple-to-apple comparison.
     """
     scores = []
     for img in per_image:
@@ -141,7 +139,7 @@ def _pearson_r(x, y):
 
 def exp_nwd_comparison(all_results, output_dir, thresholds=(0.3, 0.5, 0.7)):
     print("\n" + "=" * 70)
-    print("EXPERIMENT 6: NWD Baseline (Wang et al. 2021) vs C_sp / CCS")
+    print("EXPERIMENT: NWD Baseline (Wang et al. 2021) vs C_sp / CCS")
     print("=" * 70)
 
     any_model = next(iter(all_results.values()))["per_image"]
@@ -178,13 +176,14 @@ def exp_nwd_comparison(all_results, output_dir, thresholds=(0.3, 0.5, 0.7)):
             line += f" {r[f'F1_NWD@{t}']:<9.4f}"
         print(line)
 
-    print("\n  Diễn giải: r(C_sp, NWD) cao (>0.9) nghĩa là hai cách model hóa Gaussian")
-    print("  (cosine similarity vs Wasserstein distance) cho thứ hạng độ khớp không gian")
-    print("  gần như nhau trên dữ liệu này -> phần đóng góp mới của CCS chủ yếu nằm ở")
-    print("  C_sem (ngữ nghĩa), không phải cách đo C_sp. Nếu r thấp, cần giải thích vì sao.")
+    print("\n  Interpretation: High r(C_sp, NWD) (>0.9) indicates both Gaussian modeling approaches")
+    print("  (cosine similarity vs Wasserstein distance) yield virtually identical spatial alignment rankings")
+    print("  on this dataset -> novel contribution of CCS lies primarily in C_sem (semantics),")
+    print("  rather than C_sp formulation. If r is low, explanation is required.")
 
     save_path = Path(output_dir) / "nwd_comparison.json"
     with open(save_path, "w") as f:
         json.dump({"nwd_constant_C": round(C, 4), "rows": rows}, f, indent=2)
     print(f"\n  Saved to {save_path}")
     return rows
+

@@ -237,35 +237,35 @@ def main():
         p.add_argument("--weight-decay", type=float, default=0.0005)
         p.add_argument("--warmup-epochs", type=float, default=3.0)
 
-        # ==== THÊM MỚI (theo phân tích results.csv: model overfit sau epoch ~40,
-        # val loss tăng trở lại trong khi train loss vẫn giảm) ====
+        # ==== NEW OPTIONS (based on results.csv analysis: model overfits after epoch ~40,
+        # val loss increases while train loss continues to decrease) ====
         p.add_argument(
             "--no-cos-lr", action="store_true",
-            help="Disable cosine LR schedule. Cosine is ON by default (thường hội tụ mượt "
-                 "hơn linear decay mặc định cho các run <=100 epoch)."
+            help="Disable cosine LR schedule. Cosine is ON by default (usually converges smoother "
+                 "than default linear decay for runs <=100 epochs)."
         )
         p.add_argument(
             "--patience", type=int, default=20,
-            help="Số epoch không cải thiện val trước khi early-stop (mặc định 20). "
-                 "Đặt --epochs 100 --patience 100 để tắt hẳn early stopping."
+            help="Number of epochs without val improvement before early stopping (default 20). "
+                 "Set --epochs 100 --patience 100 to completely disable early stopping."
         )
         p.add_argument(
             "--hsv-h", type=float, default=0.015,
-            help="Augmentation hue jitter (fraction). Giữ default Ultralytics vì hue ít "
-                 "ảnh hưởng tới chẩn đoán."
+            help="Augmentation hue jitter (fraction). Retain Ultralytics default as hue has minimal "
+                 "impact on diagnosis."
         )
         p.add_argument(
             "--hsv-s", type=float, default=0.3,
-            help="Augmentation saturation jitter (fraction). Giảm từ default 0.7 xuống 0.3 "
-                 "vì độ bão hòa màu lưỡi (đỏ/tím/nhạt) là tín hiệu chẩn đoán, không nên "
-                 "jitter quá mạnh."
+            help="Augmentation saturation jitter (fraction). Reduced from default 0.7 to 0.3 "
+                 "because tongue color saturation (red/purple/pale) is a critical diagnostic signal "
+                 "and should not be jittered excessively."
         )
         p.add_argument(
             "--hsv-v", type=float, default=0.2,
-            help="Augmentation value/brightness jitter (fraction). Giảm từ default 0.4 "
-                 "xuống 0.2 cùng lý do với hsv-s."
+            help="Augmentation value/brightness jitter (fraction). Reduced from default 0.4 "
+                 "to 0.2 for the same reason as hsv-s."
         )
-        # ==== HẾT PHẦN THÊM MỚI ====
+        # ==== END OF NEW OPTIONS ====
 
         p.add_argument("--save-period", type=int, default=20)
         p.add_argument("--seed", type=int, default=42)
