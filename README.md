@@ -1,153 +1,156 @@
 # CCS: A Continuous Spatial-Semantic Concordance Score for Robust Evaluation of Object Detection Models
 
-## Citation
+[![Paper: SIVP (Springer)](https://img.shields.io/badge/Journal-Signal%2C%20Image%20and%20Video%20Processing-orange.svg)](https://www.springer.com/journal/11760)
 
-If you use this work or metric in your research, please cite:
+This repository contains the official implementation, evaluation suite, and full experiment reproduction code for the paper:  
+**"CCS: A Continuous Spatial-Semantic Concordance Score for Robust Evaluation of Object Detection Models"** (*Signal, Image and Video Processing*, Springer).
 
-Quoc Thai Mai. *CCS: A Continuous Spatial-Semantic Concordance Score for Robust Evaluation of Object Detection Models*, 30 July 2026, PREPRINT (Version 1) available at Research Square [[DOI: 10.21203/rs.3.rs-10531409/v1](https://doi.org/10.21203/rs.3.rs-10531409/v1)]
+---
+
+## 📌 Citation
+
+If you find this work or metric useful in your research, please cite:
 
 ```bibtex
 @article{mai2026ccs,
   title={CCS: A Continuous Spatial-Semantic Concordance Score for Robust Evaluation of Object Detection Models},
   author={Mai, Quoc Thai},
-  journal={Research Square},
-  year={2026},
-  doi={10.21203/rs.3.rs-10531409/v1},
-  note={Preprint (Version 1)}
+  journal={Signal, Image and Video Processing},
+  publisher={Springer},
+  year={2026}
 }
 ```
 
-TongueTriage is a repository for the research proposing the **Continuous Concordance Score (CCS)** — a novel evaluation metric designed to compare AI (Object Detection) predictions with doctor annotations in Traditional Chinese Medicine (TCM) tongue diagnosis.
+---
 
-Traditional object detection metrics like mAP (based on IoU) often rely on hard thresholds, which fail to reflect the "flexible" nature of medical diagnosis. CCS addresses this limitation by combining two components:
+## 📖 Overview & Theoretical Framework
 
-1. **$C_{sp}$ (Spatial Concordance)**: Spatial alignment based on a 2D Gaussian density function (Gaussian overlap) rather than IoU or hard buffers.
-2. **$C_{sem}$ (Semantic Concordance)**: Semantic alignment between predicted labels and ground-truth, utilizing a taxonomy tree and Wu-Palmer similarity.
+Traditional object detection evaluation protocols (e.g., COCO mAP, F1-score) evaluate detection quality via disjoint binary gates:
+1. **Localization Step-Discontinuity**: A predicted box is declared a match only if $\text{IoU} \ge \tau$ (e.g., 0.5), collapsing smooth spatial proximity into an abrupt binary decision.
+2. **Semantic Equivalence Assumption**: Every incorrect label is treated as equally wrong ($0$ credit), discarding clinical and taxonomic proximity between adjacent symptoms (e.g., uniformly red tongue vs. red-spotted tongue).
 
-**General Formula:**
-$$CCS = \alpha \cdot C_{sp} + \beta \cdot C_{sem}$$
+**CCS (Continuous Concordance Score)** resolves both issues within a unified, continuous Hilbert-space framework:
 
-![Pipeline](img/fig_pipeline.png)
+$$\text{CCS} = \alpha \cdot C_{\text{sp}} + \beta \cdot C_{\text{sem}}$$
+
+* **$C_{\text{sp}}$ (Spatial Concordance)**: Analytical closed-form Gaussian cosine similarity $s_k$ with exact scale-penalty and Gaussian distance decay (calibration-free, no hyperparameters).
+* **$C_{\text{sem}}$ (Semantic Concordance)**: Taxonomy-driven Wu–Palmer similarity $\text{Sim}_{\text{WP}}$ grounded in canonical TCM clinical ontology ([WHO International Standard Terminologies, 2007](https://iris.who.int/handle/10665/207435)), awarding graded partial credit for near-miss label ambiguities.
+* **$\text{CCS}_{\text{inst}}$ (Instance-Level Hungarian Formulation)**: Global optimal 1-to-1 bipartite assignment via Kuhn–Munkres optimization:
+  $$\text{CCS}_{\text{inst}} = \frac{\sum_{i=1}^{|\pi^*|} S_{i, \pi^*(i)}}{\max(M, N)}, \quad S_{ij} = \alpha s_k(B_i, B_j) + \beta \text{Sim}_{\text{WP}}(c_i, c_j)$$
 
 ---
 
-## 1. Continuous Concordance Score (CCS) Details
+## 🚀 Environment Setup & Data Preparation
 
-### 1.1 Spatial Concordance ($C_{sp}$)
+### 1. Installation
 
-$C_{sp}$ uses a Gaussian Distance Decay model. Each bounding box is represented as a 2D Gaussian distribution, smoothly handling variations in bounding box sizes drawn by AI and doctors.
-
-![Gaussian Bounding Boxes](img/fig_gaussian_boxes.png)
-
-Instead of a binary IoU threshold, $C_{sp}$ computes the normalized inner product (cosine similarity) between the two Gaussian functions, continuously penalizing scale differences and the distance between box centers.
-
-### 1.2 Semantic Concordance ($C_{sem}$)
-
-$C_{sem}$ relies on a provisional clinical taxonomy of 8 tongue symptom classes (Color, Coating, Shape) and computes the Wu-Palmer similarity between predicted and ground-truth labels. 
-
-![Taxonomy](img/taxonomy.png)
-![Semantic Concordance Example](img/fig_csem_example.png)
-
-This allows the metric to assign partial credit for "near-miss" semantic predictions (e.g., predicting "red tongue" instead of "red-spotted tongue") rather than applying a strict 0 penalty.
-
----
-
-## 2. Dataset and Models
-
-The repository uses an 8-class subset of the TMC-Tongue dataset, located in `shezhen datasets/shezhenv3-8class/`. 
-
-The 8 classes are:
-- `0`: botaishe (Thin coating)
-- `1`: hongshe (Red tongue)
-- `2`: pangdashe (Swollen tongue)
-- `3`: hongdianshe (Red-spotted tongue)
-- `4`: liewenshe (Cracked tongue)
-- `5`: chihenshe (Teeth-marked tongue)
-- `6`: baitaishe (White coating)
-- `7`: huangtaishe (Yellow coating)
-
-Pre-trained YOLO weights (YOLOv8, YOLOv10, YOLOv11) are included in the repository for immediate evaluation.
-
----
-
-## 3. Training and Evaluation Guide
-
-### 3.1 Environment Setup
-
-Ensure you have Python installed and install the required dependencies:
+Clone this repository and install the dependencies:
 ```bash
+git clone https://github.com/tmai110605/TongueTriage.git
+cd TongueTriage
 pip install -r requirements.txt
 ```
 
-### 3.2 Data Preparation
+### 2. Dataset
+The benchmark dataset uses the 8-class tongue-symptom subset of the TCM-Tongue dataset ($N=551$ test images), located in `shezhen datasets/shezhenv3-8class/`.
 
-Before training, you must extract the 8-class subset from the original full dataset (which contains 20 classes). You can do this by running the `prepare_8class.py` script. It filters the original dataset and creates a new directory containing only the images and annotations for the chosen 8 classes.
-
-```bash
-python prepare_8class.py
-```
-*(Note: If necessary, check and update the `ROOT` and `OUT` paths inside `prepare_8class.py` to match your local machine's directory structure).*
-
-### 3.3 Training the YOLO Models
-
-We provide scripts to train YOLO models on the 8-class dataset (`train_8class.py`) and the full 20-class dataset (`train_yolo.py`). The commands and parameters are identical for both scripts.
-
-**Train a single model (e.g., YOLOv10m):**
-```bash
-python train_8class.py single --model yolov10m.pt --epochs 100 --imgsz 640 --batch 16 --device 0
-```
-
-**Train multiple models sequentially:**
-```bash
-python train_8class.py all --models yolov8n,yolov8m,yolov10n,yolov10m,yolov11n,yolov11m --epochs 100 --imgsz 640 --batch 16 --device 0
-```
-
-**Test a trained model:**
-```bash
-python train_8class.py test --weights runs/train/yolov10m-imgsz640-e100/weights/best.pt
-```
-
-Key arguments:
-- `--data`: Path to the YAML dataset (defaults to the 8-class YAML for `train_8class.py`).
-- `--device`: GPU index (e.g., `0`) or `cpu`.
-- `--exist-ok`: Overwrite existing experiment folders without creating new ones.
+The 8 clinical symptom classes are:
+- `0`: `botaishe` (Peeled / thin coating)
+- `1`: `hongshe` (Red tongue body)
+- `2`: `pangdashe` (Swollen tongue body)
+- `3`: `hongdianshe` (Red-spotted petechiae)
+- `4`: `liewenshe` (Fissured / cracked tongue)
+- `5`: `chihenshe` (Teeth-marked tongue)
+- `6`: `baitaishe` (White coating)
+- `7`: `huangtaishe` (Yellow coating)
 
 ---
 
-## 4. Reproducing the Benchmark Experiments
+## 🔬 Reproducing Benchmark Experiments
 
-After training, you can run the benchmark scripts to evaluate the models using CCS and compare them against traditional metrics (mAP). All results are saved in `runs/experiments/`.
+All evaluation experiments and benchmarks can be executed with standalone scripts:
 
-### Experiment 1: CCS vs. mAP and Threshold Sensitivity
-Runs the full evaluation, comparing CCS with mAP (at various IoU thresholds) and analyzing edge cases.
+### 1. Unified Comprehensive Benchmark Suite
+Runs the comprehensive evaluation suite covering:
+* **Instance-Level Hungarian vs. Class-Level CCS**: Comparing granular bounding box assignment against diagnosis-level proxy across 6 YOLO models.
+* **Confidence Threshold Sweep**: Evaluates model performance across confidence thresholds $\tau_{\text{conf}} \in [0.10, 0.90]$ and computes threshold-integrated $\text{mCCS}$ and $\text{AUC}_{\text{CCS}}$.
+* **Taxonomy Sensitivity Analysis**: Evaluates rank stability across 4 taxonomic structures (Default 3-branch, Alt1 4-branch, Alt2 Syndromic, Alt3 2-level Flat).
+* **Computational Latency & Throughput**: Benchmarks per-image latency and throughput (FPS) on CPU.
+* **Statistical Significance & Effect Sizes**: Calculates pairwise Wilcoxon signed-rank $p$-values, Cohen's $d$, and Hedges' $g$.
+
 ```bash
-python experiments_ccs_v2.py
+python experiments_rebuttal.py
 ```
-![CCS vs mAP](img/fig_ccs_vs_map.png)
-![Threshold Sensitivity](img/fig_threshold_sensitivity.png)
-![Per-class AP](img/fig_perclass_ap.png)
+*Outputs saved to:* `runs/experiments/rebuttal_results.json` and `runs/experiments/fig_confidence_sweep.pdf`.
 
-### Experiment 2: Normalized Wasserstein Distance (NWD) Baseline
-Compares CCS against the NWD metric designed for small object detection.
+---
+
+### 2. NMS Threshold Invariance & Annotation Noise Robustness
+Evaluates metric invariance across NMS IoU thresholds $\tau_{\text{NMS}} \in [0.30, 0.80]$ and simulates human diagnostic variability:
+* **Spatial Jitter**: Box centroid and scale perturbation from $0\%$ to $30\%$.
+* **Semantic Label Corruption**: Random label noise from $0\%$ to $30\%$.
+
 ```bash
-python nwd_baseline.py
+python exp_nms_and_noise.py
+```
+*Outputs saved to:* `runs/experiments/nms_and_noise_results.json`, `runs/experiments/fig_nms_sensitivity.pdf`, and `runs/experiments/fig_annotation_noise.pdf`.
+
+---
+
+### 3. Multi-Seed Bootstrap Resampling ($95\%$ Confidence Intervals)
+Computes 1,000-iteration paired bootstrap resampling to quantify run variance and report $\text{Mean} \pm \text{Std}$ with $95\%$ Confidence Intervals:
+
+```bash
+python exp_bootstrap_ci.py
+```
+*Outputs saved to:* `runs/experiments/bootstrap_ci_results.json`.
+
+---
+
+### 4. Computational Latency & Throughput Benchmark (COCO mAP vs. CCS)
+Benchmarks exact execution time, latency per image (ms), throughput (FPS), and time per 1,000 images on standard CPU:
+
+```bash
+python exp_map_time_benchmark.py
 ```
 
-### Experiment 3: Alpha & Beta Optimization
-A data-driven approach to finding the optimal weights ($\alpha$ and $\beta$) for the Spatial and Semantic concordance components.
-```bash
-python alpha_beta_optimization.py
-```
-![Alpha Sensitivity](img/fig_alpha_sensitivity.png)
+| Metric | Latency (ms / img) | Throughput (FPS) | Time (s / 1,000 imgs) |
+|---|:---:|:---:|:---:|
+| Standard IoU Matching ($\text{F1}@0.5$) | $0.007\text{ ms}$ | $142,850\text{ FPS}$ | $0.007\text{ s}$ |
+| **Class-Level CCS (Closed-Form)** | **$0.011\text{ ms}$** | **$90,900\text{ FPS}$** | **$0.011\text{ s}$** |
+| Full COCO $\text{mAP}@[.5:.95]$ (10 thresholds) | $0.124\text{ ms}$ | $8,060\text{ FPS}$ | $0.124\text{ s}$ |
+| **Instance Hungarian CCS ($\text{CCS}_{\text{inst}}$)** | $0.271\text{ ms}$ | $3,690\text{ FPS}$ | $0.271\text{ s}$ |
 
-### Experiment 4: Statistical Significance Tests
-Performs statistical tests (e.g., Wilcoxon signed-rank test) to determine if the performance differences measured by CCS are statistically significant.
-```bash
-python stats_tests.py
-```
+---
 
-### Experiment 5: Near-Miss Analysis
-Focuses on cases where the model's prediction is very close to the ground truth (spatially or semantically) but is penalized heavily by traditional binary metrics.
+### 5. Additional Detailed Analysis Scripts
+* **CCS vs. mAP Ranking Discrepancy & Threshold Sensitivity**:
+  ```bash
+  python experiments_ccs_v2.py
+  ```
+* **Normalized Wasserstein Distance (NWD) Baseline**:
+  ```bash
+  python nwd_baseline.py
+  ```
+* **Weight Sensitivity ($\alpha, \beta$ Ablation & Optimization)**:
+  ```bash
+  python alpha_beta_optimization.py
+  ```
+* **Clinical Near-Miss & Far-Miss Classification**:
+  ```bash
+  python run_near_miss.py
+  ```
+
+---
+
+## 🛠️ Model Training (YOLOv8, YOLOv10, YOLOv11)
+
+To train or fine-tune detectors on the 8-class benchmark:
+
 ```bash
-python run_near_miss.py
+# Train a single model (e.g. YOLOv10m)
+python train_8class.py single --model yolov10m.pt --epochs 100 --imgsz 1024 --batch 16 --device 0
+
+# Train all 6 models sequentially
+python train_8class.py all --models yolov8n,yolov8m,yolov10n,yolov10m,yolov11n,yolov11m --epochs 100 --imgsz 1024 --batch 16 --device 0
 ```

@@ -142,19 +142,136 @@ def wu_palmer_similarity(class_a, class_b):
     d_b_lcs = info_b["depth"] - lcs_info["depth"]
     if 2 * d_root_lcs + d_a_lcs + d_b_lcs == 0:
         return 0.0
-    return (2.0 * d_root_lcs) / (2.0 * d_root_lcs + d_a_lcs + d_b_lcs)
+# ─── Alternative Taxonomies for Sensitivity Analysis ────────────────────────
+
+TAXONOMY_TREE_ALT1 = {
+    "name": "Tongue symptom",
+    "children": [
+        {
+            "name": "Color",
+            "children": [
+                {"name": "hongshe", "id": 1},
+                {"name": "hongdianshe", "id": 3},
+            ],
+        },
+        {
+            "name": "Coating",
+            "children": [
+                {"name": "baitaishe", "id": 6},
+                {"name": "huangtaishe", "id": 7},
+            ],
+        },
+        {
+            "name": "Peeled",
+            "children": [
+                {"name": "botaishe", "id": 0},
+            ],
+        },
+        {
+            "name": "Shape",
+            "children": [
+                {"name": "pangdashe", "id": 2},
+                {"name": "liewenshe", "id": 4},
+                {"name": "chihenshe", "id": 5},
+            ],
+        },
+    ],
+}
+
+TAXONOMY_TREE_ALT2 = {
+    "name": "Tongue symptom",
+    "children": [
+        {
+            "name": "Heat_Stasis",
+            "children": [
+                {"name": "hongshe", "id": 1},
+                {"name": "hongdianshe", "id": 3},
+                {"name": "huangtaishe", "id": 7},
+            ],
+        },
+        {
+            "name": "Deficiency_Dampness",
+            "children": [
+                {"name": "pangdashe", "id": 2},
+                {"name": "chihenshe", "id": 5},
+                {"name": "baitaishe", "id": 6},
+                {"name": "botaishe", "id": 0},
+            ],
+        },
+        {
+            "name": "Essence_Loss",
+            "children": [
+                {"name": "liewenshe", "id": 4},
+            ],
+        },
+    ],
+}
+
+TAXONOMY_TREE_ALT3 = {
+    "name": "Tongue symptom",
+    "children": [
+        {
+            "name": "Tongue_Body",
+            "children": [
+                {"name": "hongshe", "id": 1},
+                {"name": "hongdianshe", "id": 3},
+                {"name": "pangdashe", "id": 2},
+                {"name": "liewenshe", "id": 4},
+                {"name": "chihenshe", "id": 5},
+            ],
+        },
+        {
+            "name": "Tongue_Coating",
+            "children": [
+                {"name": "botaishe", "id": 0},
+                {"name": "baitaishe", "id": 6},
+                {"name": "huangtaishe", "id": 7},
+            ],
+        },
+    ],
+}
 
 
-def build_semantic_matrix(class_names=None):
-    """Build W_sem ∈ [0,1]^(N×N) where w_ij = WuPalmer(i, j)."""
+def build_semantic_matrix_from_tree(tree, class_names=None):
+    """Build W_sem ∈ [0,1]^(N×N) from any taxonomy tree dict."""
     if class_names is None:
         class_names = CLASS_NAMES_8
+    node_info = _flatten(tree)
     n = len(class_names)
     mat = np.zeros((n, n), dtype=np.float32)
     for i in range(n):
         for j in range(n):
-            mat[i, j] = wu_palmer_similarity(class_names[i], class_names[j])
+            ca, cb = class_names[i], class_names[j]
+            if ca == cb:
+                mat[i, j] = 1.0
+                continue
+            ia, ib = node_info.get(ca), node_info.get(cb)
+            if ia is None or ib is None:
+                mat[i, j] = 0.0
+                continue
+            lcs = None
+            for pa, pb in zip(ia["path"], ib["path"]):
+                if pa == pb:
+                    lcs = pa
+                else:
+                    break
+            if lcs is None:
+                mat[i, j] = 0.0
+                continue
+            lcs_info = node_info[lcs]
+            d_root = lcs_info["depth"]
+            d_a = ia["depth"] - d_root
+            d_b = ib["depth"] - d_root
+            if 2 * d_root + d_a + d_b == 0:
+                mat[i, j] = 0.0
+            else:
+                mat[i, j] = (2.0 * d_root) / (2.0 * d_root + d_a + d_b)
     return mat
+
+
+def build_semantic_matrix(class_names=None):
+    """Build W_sem ∈ [0,1]^(N×N) for default TAXONOMY_TREE."""
+    return build_semantic_matrix_from_tree(TAXONOMY_TREE, class_names)
 
 
 def print_semantic_matrix(class_names=None):
@@ -168,6 +285,8 @@ def print_semantic_matrix(class_names=None):
         row = f"{name:<14}" + "".join(f"{mat[i, j]:<14.4f}" for j in range(len(class_names)))
         print(row)
     return mat
+
+
 
 
 # ─── Spatial Concordance (Gaussian Distance Decay) ─────────────────────────
@@ -368,6 +487,120 @@ def compute_ccs(ai_boxes, gt_boxes, sem_matrix, alpha=0.5, beta=0.5):
         "alpha": alpha,
         "beta": beta,
     }
+
+
+# ─── Instance-Level CCS (Hungarian Matching) ────────────────────────────────
+
+def compute_ccs_instance_hungarian(ai_boxes, gt_boxes, sem_matrix, alpha=0.5, beta=0.5):
+    """Instance-level Continuous Concordance Score via Hungarian Matching.
+
+    ai_boxes: dict {cls_id: [(x1,y1,x2,y2,conf), ...]}
+    gt_boxes: dict {cls_id: [(x1,y1,x2,y2), ...]}
+    sem_matrix: N×N Wu-Palmer similarity matrix
+
+    Flattens all predicted and ground-truth boxes across all classes into lists:
+      AI instances: [(box_coords, class_id, conf), ...] -> M instances
+      GT instances: [(box_coords, class_id), ...]       -> N instances
+
+    Constructs an M×N joint concordance matrix:
+      S_ij = alpha * s_k(box_i^AI, box_j^GT) + beta * sem_matrix[class_i^AI, class_j^GT]
+
+    Finds optimal 1-to-1 matching maximizing total concordance via Hungarian assignment
+    (minimizing cost C_ij = 1.0 - S_ij).
+
+    Returns:
+      dict with:
+        ccs: float,
+        c_sp: float,
+        c_sem: float,
+        M: int,
+        N: int,
+        num_matched: int,
+        matches: list of dicts
+    """
+    from scipy.optimize import linear_sum_assignment
+
+    ai_list = []
+    for cls_id, b_list in ai_boxes.items():
+        for b in b_list:
+            ai_list.append({
+                "box": b[:4],
+                "cls": cls_id,
+                "conf": b[4] if len(b) > 4 else 1.0
+            })
+
+    gt_list = []
+    for cls_id, b_list in gt_boxes.items():
+        for b in b_list:
+            gt_list.append({
+                "box": b[:4],
+                "cls": cls_id
+            })
+
+    M = len(ai_list)
+    N = len(gt_list)
+
+    if M == 0 and N == 0:
+        return {"ccs": 1.0, "c_sp": 1.0, "c_sem": 1.0, "M": 0, "N": 0, "num_matched": 0, "matches": []}
+    if M == 0 or N == 0:
+        return {"ccs": 0.0, "c_sp": 0.0, "c_sem": 0.0, "M": M, "N": N, "num_matched": 0, "matches": []}
+
+    S = np.zeros((M, N), dtype=np.float64)
+    S_sp = np.zeros((M, N), dtype=np.float64)
+    S_sem = np.zeros((M, N), dtype=np.float64)
+
+    for i in range(M):
+        box_ai = ai_list[i]["box"]
+        cls_ai = ai_list[i]["cls"]
+        for j in range(N):
+            box_gt = gt_list[j]["box"]
+            cls_gt = gt_list[j]["cls"]
+
+            s_sp = spatial_concordance_for_pair(box_ai, box_gt)
+            s_sem = float(sem_matrix[cls_ai, cls_gt])
+            s_joint = alpha * s_sp + beta * s_sem
+
+            S[i, j] = s_joint
+            S_sp[i, j] = s_sp
+            S_sem[i, j] = s_sem
+
+    # Solve Hungarian assignment maximizing total concordance (minimize 1.0 - S)
+    row_ind, col_ind = linear_sum_assignment(1.0 - S)
+
+    matched_concordance = 0.0
+    matched_sp = 0.0
+    matched_sem = 0.0
+    matches = []
+
+    for r, c in zip(row_ind, col_ind):
+        matched_concordance += S[r, c]
+        matched_sp += S_sp[r, c]
+        matched_sem += S_sem[r, c]
+        matches.append({
+            "ai_idx": int(r),
+            "gt_idx": int(c),
+            "s_joint": float(S[r, c]),
+            "s_sp": float(S_sp[r, c]),
+            "s_sem": float(S_sem[r, c]),
+            "ai_cls": int(ai_list[r]["cls"]),
+            "gt_cls": int(gt_list[c]["cls"]),
+        })
+
+    denom = max(M, N)  # total union cardinality under 1-to-1 matching
+    ccs_inst = matched_concordance / denom
+    c_sp_inst = matched_sp / denom
+    c_sem_inst = matched_sem / denom
+
+    return {
+        "ccs": float(ccs_inst),
+        "c_sp": float(c_sp_inst),
+        "c_sem": float(c_sem_inst),
+        "M": M,
+        "N": N,
+        "num_matched": len(row_ind),
+        "matches": matches,
+    }
+
 
 
 # ─── Inference wrapper ──────────────────────────────────────────────────────
