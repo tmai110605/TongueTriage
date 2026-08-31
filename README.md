@@ -7,7 +7,7 @@ This repository contains the official implementation, evaluation suite, and full
 
 ---
 
-## 📌 Citation
+## Citation
 
 If you find this work or metric useful in your research, please cite:
 
@@ -23,7 +23,7 @@ If you find this work or metric useful in your research, please cite:
 
 ---
 
-## 📖 Overview & Theoretical Framework
+## Overview & Theoretical Framework
 
 Traditional object detection evaluation protocols (e.g., COCO mAP, F1-score) evaluate detection quality via disjoint binary gates:
 1. **Localization Step-Discontinuity**: A predicted box is declared a match only if $\text{IoU} \ge \tau$ (e.g., 0.5), collapsing smooth spatial proximity into an abrupt binary decision.
@@ -40,7 +40,7 @@ $$\text{CCS} = \alpha \cdot C_{\text{sp}} + \beta \cdot C_{\text{sem}}$$
 
 ---
 
-## 🚀 Environment Setup & Data Preparation
+## Environment Setup & Data Preparation
 
 ### 1. Installation
 
@@ -66,7 +66,8 @@ The 8 clinical symptom classes are:
 
 ---
 
-## 🔬 Reproducing Benchmark Experiments
+
+## Reproducing Benchmark Experiments (CCS & Rebuttal Suite)
 
 All evaluation experiments and benchmarks can be executed with standalone scripts:
 
@@ -116,10 +117,10 @@ python exp_map_time_benchmark.py
 
 | Metric | Latency (ms / img) | Throughput (FPS) | Time (s / 1,000 imgs) |
 |---|:---:|:---:|:---:|
-| Standard IoU Matching ($\text{F1}@0.5$) | $0.007\text{ ms}$ | $142,850\text{ FPS}$ | $0.007\text{ s}$ |
-| **Class-Level CCS (Closed-Form)** | **$0.011\text{ ms}$** | **$90,900\text{ FPS}$** | **$0.011\text{ s}$** |
-| Full COCO $\text{mAP}@[.5:.95]$ (10 thresholds) | $0.124\text{ ms}$ | $8,060\text{ FPS}$ | $0.124\text{ s}$ |
-| **Instance Hungarian CCS ($\text{CCS}_{\text{inst}}$)** | $0.271\text{ ms}$ | $3,690\text{ FPS}$ | $0.271\text{ s}$ |
+| Standard IoU Matching ($\text{F1}@0.5$) | $0.004\text{ ms}$ | $277,260\text{ FPS}$ | $0.004\text{ s}$ |
+| **Class-Level CCS (Closed-Form)** | **$0.007\text{ ms}$** | **$135,595\text{ FPS}$** | **$0.007\text{ s}$** |
+| Full COCO $\text{mAP}@[.5:.95]$ (10 thresholds) | $0.079\text{ ms}$ | $12,723\text{ FPS}$ | $0.079\text{ s}$ |
+| **Instance Hungarian CCS ($\text{CCS}_{\text{inst}}$)** | $0.022\text{ ms}$ | $46,239\text{ FPS}$ | $0.022\text{ s}$ |
 
 ---
 
@@ -143,7 +144,7 @@ python exp_map_time_benchmark.py
 
 ---
 
-## 🛠️ Model Training (YOLOv8, YOLOv10, YOLOv11)
+## Model Training (YOLOv8, YOLOv10, YOLOv11)
 
 To train or fine-tune detectors on the 8-class benchmark:
 
@@ -153,4 +154,54 @@ python train_8class.py single --model yolov10m.pt --epochs 100 --imgsz 1024 --ba
 
 # Train all 6 models sequentially
 python train_8class.py all --models yolov8n,yolov8m,yolov10n,yolov10m,yolov11n,yolov11m --epochs 100 --imgsz 1024 --batch 16 --device 0
+```
+## Pre-trained Model Checkpoints
+
+The repository includes pre-trained weights for all 6 benchmarked YOLO detector backbones (trained on the 8-class TCM-Tongue benchmark at $1024\times 1024$ resolution):
+* `bestyolov8n.pt` / `bestyolov8m.pt` (YOLOv8 Nano & Medium)
+* `bestyolov10n.pt` / `bestyolov10m.pt` (YOLOv10 Nano & Medium)
+* `bestyolov11n.pt` / `bestyolov11m.pt` (YOLO11 Nano & Medium)
+
+---
+
+## Standard Model Evaluation (mAP, Precision, Recall, F1)
+
+Reviewers can evaluate standard object detection metrics ($\text{mAP}@0.5$, $\text{mAP}@[0.5:0.95]$, Precision, Recall, per-class AP, and confusion matrices) using the following methods:
+
+### 1. Standard YOLO Validation Protocol (Ultralytics Engine)
+Run full evaluation on the dataset using the built-in test harness:
+
+```bash
+# Evaluate on test split (mAP@0.5, mAP@0.5:0.95, per-class breakdown)
+python train_8class.py test --weights bestyolov8m.pt --data "shezhen datasets/shezhenv3-8class/shezhenv3-8class.yaml" --imgsz 1024 --batch 16 --device 0
+
+# Or evaluate any other checkpoint (e.g. YOLOv10m, YOLO11m)
+python train_8class.py test --weights bestyolov10m.pt --data "shezhen datasets/shezhenv3-8class/shezhenv3-8class.yaml" --imgsz 1024 --batch 16 --device 0
+python train_8class.py test --weights bestyolov11m.pt --data "shezhen datasets/shezhenv3-8class/shezhenv3-8class.yaml" --imgsz 1024 --batch 16 --device 0
+```
+
+Alternatively, you can evaluate directly using the official Ultralytics CLI on either `val` or `test` split:
+```bash
+# Evaluation on validation split
+yolo detect val model=bestyolov8m.pt data="shezhen datasets/shezhenv3-8class/shezhenv3-8class.yaml" split=val imgsz=1024 batch=16
+
+# Evaluation on test split
+yolo detect val model=bestyolov8m.pt data="shezhen datasets/shezhenv3-8class/shezhenv3-8class.yaml" split=test imgsz=1024 batch=16
+```
+
+### 2. Standalone COCO mAP@[0.5:0.95] & Multi-Metric Comparison (IoU / GIoU / DIoU / F1)
+To compute interpolated 101-point COCO-style $\text{mAP}@[0.5:0.95]$ alongside step-gated F1-scores ($\text{IoU} \in \{0.3, 0.5, 0.7\}$) across all 6 models:
+
+```bash
+python experiments_ccs_v2.py
+```
+*Outputs saved to:* `runs/experiments/experiments_v2_results.json` containing:
+* $\text{mAP}@[0.5:0.95]$ under IoU, GIoU, and DIoU matchers.
+* Precision, Recall, Micro-F1, and Macro-F1 across threshold levels.
+* Ranking inversion (rank flipping) analysis between standard metrics and CCS.
+
+### 3. Normalized Wasserstein Distance (NWD) Baseline Evaluation
+Evaluate bounding box distribution similarity for small/blurred symptom lesions:
+```bash
+python nwd_baseline.py
 ```
